@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Supply Chain — ULTIMATE Database Bible</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  /* ===== BASE ===== */
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background: #fff;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ===== HEADINGS ===== */
+  h1 { font-size: 24pt; text-align: center; margin: 0 0 4px; border-bottom: 3px solid #2563eb; padding-bottom: 10px; }
+  .subtitle { text-align: center; color: #555; font-size: 11pt; margin-bottom: 30px; }
+  h2 { font-size: 16pt; color: #1e40af; border-bottom: 2px solid #93c5fd; padding-bottom: 6px; margin-top: 36px; page-break-after: avoid; }
+  h3 { font-size: 13pt; color: #1e3a5f; margin-top: 22px; page-break-after: avoid; }
+  h4 { font-size: 11.5pt; color: #374151; margin-top: 16px; page-break-after: avoid; }
+
+  /* ===== TABLES ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    border: 1.5px solid #333 !important;
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #1e40af !important;
+    color: #fff !important;
+    font-weight: 600;
+  }
+  tr:nth-child(even) { background-color: #f0f4ff !important; }
+  tr:nth-child(odd)  { background-color: #fff !important;    }
+
+  /* ===== CODE ===== */
+  pre {
+    background: #1e1e2e !important;
+    color: #cdd6f4 !important;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9.5pt;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    page-break-inside: avoid;
+  }
+  code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9.5pt;
+    background: #e8e8e8;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  pre code { background: none; padding: 0; }
+
+  /* ===== KEYWORD HIGHLIGHTS IN CODE ===== */
+  .kw { color: #cba6f7; font-weight: bold; }
+  .str { color: #a6e3a1; }
+  .cmt { color: #6c7086; font-style: italic; }
+  .fn { color: #89b4fa; }
+  .num { color: #fab387; }
+
+  /* ===== ALERTS ===== */
+  .alert {
+    border-left: 4px solid;
+    padding: 10px 14px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+  .alert-note    { border-color: #3b82f6; background: #eff6ff !important; }
+  .alert-tip     { border-color: #22c55e; background: #f0fdf4 !important; }
+  .alert-important { border-color: #a855f7; background: #faf5ff !important; }
+  .alert-warning { border-color: #f59e0b; background: #fffbeb !important; }
+  .alert-caution { border-color: #ef4444; background: #fef2f2 !important; }
+  .alert-label   { font-weight: 700; display: block; margin-bottom: 4px; }
+
+  /* ===== MERMAID ===== */
+  .mermaid {
+    text-align: center;
+    margin: 16px 0;
+    page-break-inside: avoid;
+  }
+  .mermaid svg { max-width: 100% !important; height: auto !important; }
+
+  /* ===== MISC ===== */
+  .toc { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 16px 24px; margin-bottom: 30px; }
+  .toc ol { column-count: 2; column-gap: 30px; }
+  .toc li { margin-bottom: 3px; font-size: 10pt; }
+  .page-break { page-break-before: always; }
+  blockquote { border-left: 3px solid #93c5fd; margin: 10px 0; padding: 4px 14px; color: #475569; background: #f8fafc; }
+  hr { border: none; border-top: 1px solid #cbd5e1; margin: 24px 0; }
+  .ascii-art { font-family: monospace; white-space: pre; font-size: 9pt; background: #f1f5f9; padding: 10px; border-radius: 4px; text-align: center; }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { padding: 0 20px; font-size: 10.5pt; }
+    h1 { font-size: 20pt; }
+    h2 { font-size: 14pt; margin-top: 24px; }
+    h3 { font-size: 12pt; }
+    table { font-size: 9pt; }
+    th, td { border: 1.5px solid #000 !important; padding: 4px 8px; }
+    th { background-color: #1e40af !important; color: #fff !important; }
+    tr:nth-child(even) { background-color: #e8ecf5 !important; }
+    pre { font-size: 8.5pt; padding: 10px; border: 1px solid #aaa; }
+    .alert { border-left-width: 3px; }
+    .mermaid svg { max-width: 100% !important; }
+    .no-print { display: none; }
+    a { color: #1a1a1a; text-decoration: none; }
+  }
+
+  @page { margin: 1.5cm 1.8cm; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<h1>🎓 Smart Supply Chain — ULTIMATE Database Bible</h1>
+<p class="subtitle"><strong>Professor's Edition — PLUS ULTRA</strong> 🔥 &nbsp;|&nbsp; DBMS: MySQL 8.0+ &nbsp;|&nbsp; Database: <code>supply_chain</code></p>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+<h3 style="margin-top:0;">📑 Table of Contents</h3>
+<ol>
+<li>System Overview</li>
+<li>ER Diagram — Full Conceptual Model</li>
+<li>Relational Schema Notation</li>
+<li>Complete DDL — CREATE TABLE Statements</li>
+<li>Table-by-Table Deep Dive (Data Dictionary)</li>
+<li>Seed Data — Full Visual Snapshots</li>
+<li>All Relationships &amp; Foreign Keys</li>
+<li>Functional Dependencies &amp; Candidate Keys</li>
+<li>Normalization Proof — 1NF → 2NF → 3NF → BCNF</li>
+<li>Anomaly Analysis</li>
+<li>The Trigger — Line by Line</li>
+<li>ACID Properties Analysis</li>
+<li>Transaction Walkthrough — Order Placement</li>
+<li>All SQL Queries Used in the Application</li>
+<li>Relational Algebra Equivalents</li>
+<li>JOIN Map — Every Possible Join Path</li>
+<li>Indexing Strategy &amp; Optimization</li>
+<li>Concurrency &amp; Isolation Levels</li>
+<li>Security Analysis</li>
+<li>Data Flow Diagrams</li>
+<li>Practice SQL Queries (Exam-Ready)</li>
+<li>Viva / Interview Q&amp;A (25 Questions)</li>
+<li>Glossary of DBMS Terms</li>
+</ol>
+</div>
+
+<!-- ═══════════════════ SECTION 1 ═══════════════════ -->
+<h2>1. System Overview</h2>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td><strong>DBMS</strong></td><td>MySQL 8.0+ (Relational DBMS)</td></tr>
+<tr><td><strong>Database Name</strong></td><td><code>supply_chain</code></td></tr>
+<tr><td><strong>Backend</strong></td><td>Node.js + Express.js</td></tr>
+<tr><td><strong>Driver</strong></td><td><code>mysql2/promise</code> (async connection pool)</td></tr>
+<tr><td><strong>Auth</strong></td><td>JWT tokens + bcrypt password hashing</td></tr>
+<tr><td><strong>Frontend</strong></td><td>React 18 + Tailwind CSS + Vite</td></tr>
+</table>
+
+<h3>What problem does this database solve?</h3>
+<p>This database manages the <strong>end-to-end flow of goods</strong> in a supply chain:</p>
+<div class="ascii-art">Manufacturer → [WAREHOUSE] → [INVENTORY] → Customer Order → Delivery
+                ↑               ↑                ↑
+           warehouses       inventory        orders + order_items
+              table           table              tables</div>
+
+<h3>Actors and Their Operations</h3>
+<table>
+<tr><th>Actor</th><th>Tables They Touch</th><th>Operations</th></tr>
+<tr><td><strong>Customer</strong></td><td>customers, orders, order_items</td><td>Register, Login, Browse products, Place orders, View order history</td></tr>
+<tr><td><strong>Admin</strong></td><td>inventory, logs, products, warehouses</td><td>Add/adjust stock, View audit logs, Monitor warehouses</td></tr>
+<tr><td><strong>System (Trigger)</strong></td><td>inventory, logs</td><td>Auto-deduct stock on order, Auto-create audit log</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 2 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>2. ER Diagram — Full Conceptual Model</h2>
+
+<div class="mermaid">
+erDiagram
+    CUSTOMERS ||--o{ ORDERS : "places"
+    ORDERS ||--|{ ORDER_ITEMS : "contains"
+    PRODUCTS ||--o{ ORDER_ITEMS : "appears in"
+    WAREHOUSES ||--o{ ORDERS : "fulfills"
+    PRODUCTS ||--o{ INVENTORY : "stocked at"
+    WAREHOUSES ||--o{ INVENTORY : "stores"
+    INVENTORY ||--o{ LOGS : "tracked by"
+
+    CUSTOMERS {
+        INT customer_id PK
+        VARCHAR customer_name
+        VARCHAR email UK
+        VARCHAR password
+    }
+
+    PRODUCTS {
+        INT product_id PK
+        VARCHAR product_name
+        DECIMAL product_price
+        VARCHAR product_category
+    }
+
+    WAREHOUSES {
+        INT warehouse_id PK
+        VARCHAR warehouse_name
+        VARCHAR warehouse_location
+    }
+
+    INVENTORY {
+        INT inventory_id PK
+        INT product_id FK
+        INT warehouse_id FK
+        INT stock_quantity
+    }
+
+    ORDERS {
+        INT order_id PK
+        INT customer_id FK
+        DATE order_date
+        INT warehouse_id FK
+    }
+
+    ORDER_ITEMS {
+        INT order_item_id PK
+        INT order_id FK
+        INT product_id FK
+        INT quantity
+    }
+
+    LOGS {
+        INT log_id PK
+        INT inventory_id FK
+        VARCHAR change_type
+        INT change_quantity
+        DATETIME log_date
+    }
+</div>
+
+<h3>Cardinality Summary</h3>
+<table>
+<tr><th>Relationship</th><th>Type</th><th>Reading</th></tr>
+<tr><td>Customer → Orders</td><td><strong>1 : N</strong></td><td>One customer can place many orders</td></tr>
+<tr><td>Order → Order Items</td><td><strong>1 : N</strong></td><td>One order contains one or more items</td></tr>
+<tr><td>Product → Order Items</td><td><strong>1 : N</strong></td><td>One product can appear in many orders</td></tr>
+<tr><td>Warehouse → Orders</td><td><strong>1 : N</strong></td><td>One warehouse fulfills many orders</td></tr>
+<tr><td>Product → Inventory</td><td><strong>1 : N</strong></td><td>One product is stocked in many warehouses</td></tr>
+<tr><td>Warehouse → Inventory</td><td><strong>1 : N</strong></td><td>One warehouse stores many products</td></tr>
+<tr><td>Inventory → Logs</td><td><strong>1 : N</strong></td><td>One inventory record has many log entries</td></tr>
+<tr><td><strong>Product ↔ Warehouse</strong></td><td><strong>M : N</strong></td><td>Resolved via <code>inventory</code> junction table</td></tr>
+<tr><td><strong>Order ↔ Product</strong></td><td><strong>M : N</strong></td><td>Resolved via <code>order_items</code> junction table</td></tr>
+</table>
+
+<h3>Participation Constraints</h3>
+<table>
+<tr><th>Relationship</th><th>Total / Partial</th></tr>
+<tr><td>Customer places Order</td><td><strong>Partial</strong> — a customer may exist without orders</td></tr>
+<tr><td>Order contains Order_Items</td><td><strong>Total</strong> — every order must have ≥1 item</td></tr>
+<tr><td>Inventory tracked by Logs</td><td><strong>Partial</strong> — inventory can exist with no log yet</td></tr>
+<tr><td>Product stocked in Inventory</td><td><strong>Partial</strong> — a product can exist with no stock</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 3 ═══════════════════ -->
+<h2>3. Relational Schema Notation</h2>
+<p>Using standard textbook notation — <u>underline</u> = PK, <em>italic</em> = FK:</p>
+<pre>customers      ( <u>customer_id</u>, customer_name, email, password )
+products       ( <u>product_id</u>, product_name, product_price, product_category )
+warehouses     ( <u>warehouse_id</u>, warehouse_name, warehouse_location )
+inventory      ( <u>inventory_id</u>, <em>product_id</em>, <em>warehouse_id</em>, stock_quantity )
+orders         ( <u>order_id</u>, <em>customer_id</em>, order_date, <em>warehouse_id</em> )
+order_items    ( <u>order_item_id</u>, <em>order_id</em>, <em>product_id</em>, quantity )
+logs           ( <u>log_id</u>, <em>inventory_id</em>, change_type, change_quantity, log_date )</pre>
+
+<h3>Mapping Rules Applied</h3>
+<table>
+<tr><th>ER Concept</th><th>Relational Mapping</th><th>Table</th></tr>
+<tr><td>Strong Entity (Customer)</td><td>Direct table with own PK</td><td><code>customers</code></td></tr>
+<tr><td>Strong Entity (Product)</td><td>Direct table with own PK</td><td><code>products</code></td></tr>
+<tr><td>Strong Entity (Warehouse)</td><td>Direct table with own PK</td><td><code>warehouses</code></td></tr>
+<tr><td>M:N Relationship (Product–Warehouse)</td><td>Junction table with FKs</td><td><code>inventory</code></td></tr>
+<tr><td>M:N Relationship (Order–Product)</td><td>Junction table with FKs</td><td><code>order_items</code></td></tr>
+<tr><td>1:N Relationship (Customer–Order)</td><td>FK in child table</td><td><code>orders.customer_id</code></td></tr>
+<tr><td>Weak-like Entity (Log)</td><td>Table with FK to owning entity</td><td><code>logs.inventory_id</code></td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 4 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>4. Complete DDL — CREATE TABLE Statements</h2>
+
+<pre><span class="cmt">-- ╔══════════════════════════════════════════════════════╗
+-- ║           DATABASE CREATION                         ║
+-- ╚══════════════════════════════════════════════════════╝</span>
+
+<span class="kw">CREATE DATABASE IF NOT EXISTS</span> supply_chain;
+<span class="kw">USE</span> supply_chain;
+
+
+<span class="cmt">-- ╔══════════════════════════════════════════════════════╗
+-- ║  TABLE 1: customers (INDEPENDENT — No foreign keys) ║
+-- ╚══════════════════════════════════════════════════════╝</span>
+
+<span class="kw">CREATE TABLE</span> customers (
+    customer_id    <span class="fn">INT</span>           <span class="kw">PRIMARY KEY</span>,        <span class="cmt">-- Manually assigned (MAX+1)</span>
+    customer_name  <span class="fn">VARCHAR(100)</span>  <span class="kw">NOT NULL</span>,           <span class="cmt">-- Full name</span>
+    email          <span class="fn">VARCHAR(255)</span>  <span class="kw">NOT NULL UNIQUE</span>,    <span class="cmt">-- Login credential (candidate key)</span>
+    password       <span class="fn">VARCHAR(255)</span>  <span class="kw">NOT NULL</span>            <span class="cmt">-- bcrypt hash ($2a$10$...)</span>
+);
+
+
+<span class="cmt">-- ╔══════════════════════════════════════════════════════╗
+-- ║  TABLE 2: products (INDEPENDENT — No foreign keys)  ║
+-- ╚══════════════════════════════════════════════════════╝</span>
+
+<span class="kw">CREATE TABLE</span> products (
+    product_id       <span class="fn">INT</span>             <span class="kw">PRIMARY KEY</span>,
+    product_name     <span class="fn">VARCHAR(100)</span>    <span class="kw">NOT NULL</span>,
+    product_price    <span class="fn">DECIMAL(10,2)</span>   <span class="kw">NOT NULL</span>,          <span class="cmt">-- Exact precision for money</span>
+    product_category <span class="fn">VARCHAR(50)</span>     <span class="kw">NOT NULL</span>
+);
+
+
+<span class="cmt">-- ╔══════════════════════════════════════════════════════╗
+-- ║  TABLE 3: warehouses (INDEPENDENT — No foreign keys)║
+-- ╚══════════════════════════════════════════════════════╝</span>
+
+<span class="kw">CREATE TABLE</span> warehouses (
+    warehouse_id       <span class="fn">INT</span>           <span class="kw">PRIMARY KEY</span>,
+    warehouse_name     <span class="fn">VARCHAR(100)</span>  <span class="kw">NOT NULL</span>,
+    warehouse_location <span class="fn">VARCHAR(200)</span>  <span class="kw">NOT NULL</span>
+);
+
+
+<span class="cmt">-- ╔══════════════════════════════════════════════════════╗
+-- ║  TABLE 4: inventory (JUNCTION — product × warehouse)║
+-- ╚══════════════════════════════════════════════════════╝</span>
+
+<span class="kw">CREATE TABLE</span> inventory (
+    inventory_id    <span class="fn">INT</span>           <span class="kw">PRIMARY KEY AUTO_INCREMENT</span>,
+    product_id      <span class="fn">INT</span>           <span class="kw">NOT NULL</span>,
+    warehouse_id    <span class="fn">INT</span>           <span class="kw">NOT NULL</span>,
+    stock_quantity  <span class="fn">INT</span>           <span class="kw">NOT NULL DEFAULT</span> <span class="num">0</span>,
+
+    <span class="kw">FOREIGN KEY</span> (product_id)   <span class="kw">REFERENCES</span> products(product_id)
+        <span class="kw">ON DELETE CASCADE ON UPDATE CASCADE</span>,
+    <span class="kw">FOREIGN KEY</span> (warehouse_id) <span class="kw">REFERENCES</span> warehouses(warehouse_id)
+        <span class="kw">ON DELETE CASCADE ON UPDATE CASCADE</span>,
+
+    <span class="kw">UNIQUE KEY</span> unique_product_warehouse (product_id, warehouse_id)
+);
+
+
+<span class="cmt">-- ╔══════════════════════════════════════════════════════╗
+-- ║  TABLE 5: orders (DEPENDENT on customers+warehouses)║
+-- ╚══════════════════════════════════════════════════════╝</span>
+
+<span class="kw">CREATE TABLE</span> orders (
+    order_id      <span class="fn">INT</span>           <span class="kw">PRIMARY KEY AUTO_INCREMENT</span>,
+    customer_id   <span class="fn">INT</span>           <span class="kw">NOT NULL</span>,
+    order_date    <span class="fn">DATETIME</span>      <span class="kw">NOT NULL DEFAULT</span> CURRENT_TIMESTAMP,
+    warehouse_id  <span class="fn">INT</span>           <span class="kw">NOT NULL</span>,
+
+    <span class="kw">FOREIGN KEY</span> (customer_id)  <span class="kw">REFERENCES</span> customers(customer_id)
+        <span class="kw">ON DELETE CASCADE ON UPDATE CASCADE</span>,
+    <span class="kw">FOREIGN KEY</span> (warehouse_id) <span class="kw">REFERENCES</span> warehouses(warehouse_id)
+        <span class="kw">ON DELETE CASCADE ON UPDATE CASCADE</span>
+);
+
+
+<span class="cmt">-- ╔══════════════════════════════════════════════════════╗
+-- ║  TABLE 6: order_items (JUNCTION — order × product)  ║
+-- ╚══════════════════════════════════════════════════════╝</span>
+
+<span class="kw">CREATE TABLE</span> order_items (
+    order_item_id  <span class="fn">INT</span>           <span class="kw">PRIMARY KEY AUTO_INCREMENT</span>,
+    order_id       <span class="fn">INT</span>           <span class="kw">NOT NULL</span>,
+    product_id     <span class="fn">INT</span>           <span class="kw">NOT NULL</span>,
+    quantity       <span class="fn">INT</span>           <span class="kw">NOT NULL CHECK</span> (quantity > <span class="num">0</span>),
+
+    <span class="kw">FOREIGN KEY</span> (order_id)   <span class="kw">REFERENCES</span> orders(order_id)
+        <span class="kw">ON DELETE CASCADE ON UPDATE CASCADE</span>,
+    <span class="kw">FOREIGN KEY</span> (product_id) <span class="kw">REFERENCES</span> products(product_id)
+        <span class="kw">ON DELETE CASCADE ON UPDATE CASCADE</span>
+);
+
+
+<span class="cmt">-- ╔══════════════════════════════════════════════════════╗
+-- ║  TABLE 7: logs (AUDIT TRAIL — depends on inventory) ║
+-- ╚══════════════════════════════════════════════════════╝</span>
+
+<span class="kw">CREATE TABLE</span> logs (
+    log_id           <span class="fn">INT</span>           <span class="kw">PRIMARY KEY AUTO_INCREMENT</span>,
+    inventory_id     <span class="fn">INT</span>           <span class="kw">NOT NULL</span>,
+    change_type      <span class="fn">VARCHAR(10)</span>   <span class="kw">NOT NULL</span>,          <span class="cmt">-- 'IN' or 'OUT'</span>
+    change_quantity  <span class="fn">INT</span>           <span class="kw">NOT NULL</span>,
+    log_date         <span class="fn">DATETIME</span>      <span class="kw">NOT NULL DEFAULT</span> CURRENT_TIMESTAMP,
+
+    <span class="kw">FOREIGN KEY</span> (inventory_id) <span class="kw">REFERENCES</span> inventory(inventory_id)
+        <span class="kw">ON DELETE CASCADE ON UPDATE CASCADE</span>
+);</pre>
+
+<!-- ═══════════════════ SECTION 5 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>5. Table-by-Table Deep Dive (Data Dictionary)</h2>
+
+<h3>📋 Table 1: <code>customers</code></h3>
+<blockquote><strong>Role:</strong> Entity table — stores registered users. <strong>Referenced by:</strong> <code>orders.customer_id</code></blockquote>
+<table>
+<tr><th>#</th><th>Column</th><th>MySQL Type</th><th>Null?</th><th>Default</th><th>Key</th><th>Description</th></tr>
+<tr><td>1</td><td><code>customer_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>PK</strong></td><td>Unique customer ID, manually computed as MAX+1</td></tr>
+<tr><td>2</td><td><code>customer_name</code></td><td>VARCHAR(100)</td><td>NO</td><td>—</td><td>—</td><td>Full name displayed in UI</td></tr>
+<tr><td>3</td><td><code>email</code></td><td>VARCHAR(255)</td><td>NO</td><td>—</td><td><strong>UNI</strong></td><td>Login email; also a <strong>candidate key</strong></td></tr>
+<tr><td>4</td><td><code>password</code></td><td>VARCHAR(255)</td><td>NO</td><td>—</td><td>—</td><td>bcrypt hash (salt rounds=10)</td></tr>
+</table>
+
+<h3>📋 Table 2: <code>products</code></h3>
+<blockquote><strong>Role:</strong> Entity table — product catalog (30 items). <strong>Referenced by:</strong> <code>inventory.product_id</code>, <code>order_items.product_id</code></blockquote>
+<table>
+<tr><th>#</th><th>Column</th><th>MySQL Type</th><th>Null?</th><th>Default</th><th>Key</th><th>Description</th></tr>
+<tr><td>1</td><td><code>product_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>PK</strong></td><td>Unique product ID (2121–2150)</td></tr>
+<tr><td>2</td><td><code>product_name</code></td><td>VARCHAR(100)</td><td>NO</td><td>—</td><td>—</td><td>Human-readable name</td></tr>
+<tr><td>3</td><td><code>product_price</code></td><td>DECIMAL(10,2)</td><td>NO</td><td>—</td><td>—</td><td>Unit price in USD</td></tr>
+<tr><td>4</td><td><code>product_category</code></td><td>VARCHAR(50)</td><td>NO</td><td>—</td><td>—</td><td>Category for filtering</td></tr>
+</table>
+
+<h4>Category Distribution</h4>
+<table>
+<tr><th>Category</th><th>Count</th><th>Price Range</th><th>Examples</th></tr>
+<tr><td>Electronics</td><td>10</td><td>$25 – $1,200</td><td>Dell Laptop, Samsung Monitor</td></tr>
+<tr><td>Furniture</td><td>6</td><td>$85 – $220</td><td>Office Chair, Glass Table</td></tr>
+<tr><td>Stationery</td><td>8</td><td>$0.50 – $6</td><td>Notebook, Pen, Eraser</td></tr>
+<tr><td>Accessories</td><td>2</td><td>$35 – $40</td><td>Backpack, Tote Bag</td></tr>
+<tr><td>Footwear</td><td>4</td><td>$5 – $70</td><td>Running Shoes, Slippers</td></tr>
+</table>
+
+<div class="alert alert-tip"><span class="alert-label">💡 TIP</span>
+<strong>Why is <code>stock</code> NOT a column here?</strong> Because stock varies by warehouse. Storing it in <code>products</code> would violate 3NF. Instead, stock is computed at query time with <code>COALESCE(SUM(i.stock_quantity), 0)</code>.</div>
+
+<h3>📋 Table 3: <code>warehouses</code></h3>
+<blockquote><strong>Role:</strong> Entity table — physical warehouse locations (5 locations). <strong>Referenced by:</strong> <code>inventory.warehouse_id</code>, <code>orders.warehouse_id</code></blockquote>
+<table>
+<tr><th>#</th><th>Column</th><th>MySQL Type</th><th>Null?</th><th>Default</th><th>Key</th><th>Description</th></tr>
+<tr><td>1</td><td><code>warehouse_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>PK</strong></td><td>Unique warehouse ID (3006–3010)</td></tr>
+<tr><td>2</td><td><code>warehouse_name</code></td><td>VARCHAR(100)</td><td>NO</td><td>—</td><td>—</td><td>Descriptive name</td></tr>
+<tr><td>3</td><td><code>warehouse_location</code></td><td>VARCHAR(200)</td><td>NO</td><td>—</td><td>—</td><td>City, Country</td></tr>
+</table>
+
+<h3>📋 Table 4: <code>inventory</code> ⭐ (Junction Table)</h3>
+<blockquote><strong>Role:</strong> Resolves M:N between <code>products</code> and <code>warehouses</code>. <strong>Cardinality:</strong> 60 rows. <strong>Referenced by:</strong> <code>logs.inventory_id</code></blockquote>
+<table>
+<tr><th>#</th><th>Column</th><th>MySQL Type</th><th>Null?</th><th>Default</th><th>Key</th><th>Description</th></tr>
+<tr><td>1</td><td><code>inventory_id</code></td><td>INT</td><td>NO</td><td>AUTO_INCREMENT</td><td><strong>PK</strong></td><td>Surrogate key</td></tr>
+<tr><td>2</td><td><code>product_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>FK</strong></td><td>→ <code>products.product_id</code></td></tr>
+<tr><td>3</td><td><code>warehouse_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>FK</strong></td><td>→ <code>warehouses.warehouse_id</code></td></tr>
+<tr><td>4</td><td><code>stock_quantity</code></td><td>INT</td><td>NO</td><td>0</td><td>—</td><td>Current units available</td></tr>
+</table>
+<div class="alert alert-important"><span class="alert-label">⚠️ IMPORTANT — Dual Keys</span>
+<strong>Surrogate PK:</strong> <code>inventory_id</code> (auto-increment, simple JOINs).<br>
+<strong>Candidate Key:</strong> <code>(product_id, warehouse_id)</code> (composite, enforced UNIQUE). Both uniquely identify a row.</div>
+
+<h3>📋 Table 5: <code>orders</code></h3>
+<blockquote><strong>Role:</strong> Transaction record — each row = one purchase. <strong>Referenced by:</strong> <code>order_items.order_id</code></blockquote>
+<table>
+<tr><th>#</th><th>Column</th><th>MySQL Type</th><th>Null?</th><th>Default</th><th>Key</th><th>Description</th></tr>
+<tr><td>1</td><td><code>order_id</code></td><td>INT</td><td>NO</td><td>AUTO_INCREMENT</td><td><strong>PK</strong></td><td>Unique order number</td></tr>
+<tr><td>2</td><td><code>customer_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>FK</strong></td><td>→ <code>customers.customer_id</code></td></tr>
+<tr><td>3</td><td><code>order_date</code></td><td>DATETIME</td><td>NO</td><td>NOW()</td><td>—</td><td>Timestamp of order placement</td></tr>
+<tr><td>4</td><td><code>warehouse_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>FK</strong></td><td>→ <code>warehouses.warehouse_id</code></td></tr>
+</table>
+
+<h3>📋 Table 6: <code>order_items</code> (Junction Table + TRIGGER)</h3>
+<blockquote><strong>Role:</strong> Resolves M:N between <code>orders</code> and <code>products</code>. <strong>Has TRIGGER:</strong> <code>after_order_item_insert</code></blockquote>
+<table>
+<tr><th>#</th><th>Column</th><th>MySQL Type</th><th>Null?</th><th>Default</th><th>Key</th><th>Description</th></tr>
+<tr><td>1</td><td><code>order_item_id</code></td><td>INT</td><td>NO</td><td>AUTO_INCREMENT</td><td><strong>PK</strong></td><td>Surrogate key</td></tr>
+<tr><td>2</td><td><code>order_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>FK</strong></td><td>→ <code>orders.order_id</code></td></tr>
+<tr><td>3</td><td><code>product_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>FK</strong></td><td>→ <code>products.product_id</code></td></tr>
+<tr><td>4</td><td><code>quantity</code></td><td>INT</td><td>NO</td><td>—</td><td>—</td><td>Number of units ordered</td></tr>
+</table>
+
+<h3>📋 Table 7: <code>logs</code> (Audit Trail)</h3>
+<blockquote><strong>Role:</strong> Immutable audit trail — append-only. Never deleted.</blockquote>
+<table>
+<tr><th>#</th><th>Column</th><th>MySQL Type</th><th>Null?</th><th>Default</th><th>Key</th><th>Description</th></tr>
+<tr><td>1</td><td><code>log_id</code></td><td>INT</td><td>NO</td><td>AUTO_INCREMENT</td><td><strong>PK</strong></td><td>Unique log entry</td></tr>
+<tr><td>2</td><td><code>inventory_id</code></td><td>INT</td><td>NO</td><td>—</td><td><strong>FK</strong></td><td>→ <code>inventory.inventory_id</code></td></tr>
+<tr><td>3</td><td><code>change_type</code></td><td>VARCHAR(10)</td><td>NO</td><td>—</td><td>—</td><td><code>'IN'</code> = stock added, <code>'OUT'</code> = stock removed</td></tr>
+<tr><td>4</td><td><code>change_quantity</code></td><td>INT</td><td>NO</td><td>—</td><td>—</td><td>Number of units (always positive)</td></tr>
+<tr><td>5</td><td><code>log_date</code></td><td>DATETIME</td><td>NO</td><td>NOW()</td><td>—</td><td>When the change occurred</td></tr>
+</table>
+
+<h4>Who Writes to Logs?</h4>
+<table>
+<tr><th>Writer</th><th>change_type</th><th>Trigger</th></tr>
+<tr><td><strong>MySQL Trigger</strong> (automatic)</td><td><code>'OUT'</code></td><td>When <code>order_items</code> INSERT fires</td></tr>
+<tr><td><strong>inventoryController.addInventory</strong></td><td><code>'IN'</code></td><td>Admin adds stock</td></tr>
+<tr><td><strong>inventoryController.adjustInventory</strong></td><td><code>'IN'</code> or <code>'OUT'</code></td><td>Admin adjusts stock up or down</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 6 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>6. Seed Data — Full Visual Snapshots</h2>
+
+<h3><code>customers</code> (10 rows)</h3>
+<table>
+<tr><th>customer_id</th><th>customer_name</th><th>email</th><th>password</th></tr>
+<tr><td>1021</td><td>Aarav Sharma</td><td>aarav.sharma@example.com</td><td>pass123</td></tr>
+<tr><td>1022</td><td>Ananya Singh</td><td>ananya.singh@example.com</td><td>pass123</td></tr>
+<tr><td>1023</td><td>Rohan Mehta</td><td>rohan.mehta@example.com</td><td>pass123</td></tr>
+<tr><td>1024</td><td>Isha Kapoor</td><td>isha.kapoor@example.com</td><td>pass123</td></tr>
+<tr><td>1025</td><td>Vivaan Patel</td><td>vivaan.patel@example.com</td><td>pass123</td></tr>
+<tr><td>1026</td><td>Diya Verma</td><td>diya.verma@example.com</td><td>pass123</td></tr>
+<tr><td>1027</td><td>Kabir Rao</td><td>kabir.rao@example.com</td><td>pass123</td></tr>
+<tr><td>1028</td><td>Saanvi Nair</td><td>saanvi.nair@example.com</td><td>pass123</td></tr>
+<tr><td>1029</td><td>Arjun Gupta</td><td>arjun.gupta@example.com</td><td>pass123</td></tr>
+<tr><td>1030</td><td>Meera Joshi</td><td>meera.joshi@example.com</td><td>pass123</td></tr>
+</table>
+
+<h3><code>products</code> (30 rows)</h3>
+<table>
+<tr><th>product_id</th><th>product_name</th><th>product_price</th><th>product_category</th></tr>
+<tr><td>2121</td><td>Dell Laptop</td><td>800.00</td><td>Electronics</td></tr>
+<tr><td>2122</td><td>HP Laptop</td><td>950.00</td><td>Electronics</td></tr>
+<tr><td>2123</td><td>Asus Laptop</td><td>1200.00</td><td>Electronics</td></tr>
+<tr><td>2124</td><td>Logitech Mouse</td><td>25.00</td><td>Electronics</td></tr>
+<tr><td>2125</td><td>HP Mouse</td><td>30.00</td><td>Electronics</td></tr>
+<tr><td>2126</td><td>Corsair Keyboard</td><td>45.00</td><td>Electronics</td></tr>
+<tr><td>2127</td><td>Microsoft Keyboard</td><td>50.00</td><td>Electronics</td></tr>
+<tr><td>2128</td><td>Samsung Monitor</td><td>150.00</td><td>Electronics</td></tr>
+<tr><td>2129</td><td>LG Monitor</td><td>200.00</td><td>Electronics</td></tr>
+<tr><td>2130</td><td>Canon Printer</td><td>120.00</td><td>Electronics</td></tr>
+<tr><td>2131</td><td>Office Chair</td><td>85.00</td><td>Furniture</td></tr>
+<tr><td>2132</td><td>Gaming Chair</td><td>95.00</td><td>Furniture</td></tr>
+<tr><td>2133</td><td>Wooden Table</td><td>200.00</td><td>Furniture</td></tr>
+<tr><td>2134</td><td>Glass Table</td><td>220.00</td><td>Furniture</td></tr>
+<tr><td>2135</td><td>Filing Cabinet</td><td>150.00</td><td>Furniture</td></tr>
+<tr><td>2136</td><td>Storage Cabinet</td><td>180.00</td><td>Furniture</td></tr>
+<tr><td>2137</td><td>Notebook</td><td>5.00</td><td>Stationery</td></tr>
+<tr><td>2138</td><td>Diary</td><td>6.00</td><td>Stationery</td></tr>
+<tr><td>2139</td><td>Pen</td><td>1.50</td><td>Stationery</td></tr>
+<tr><td>2140</td><td>Marker</td><td>2.00</td><td>Stationery</td></tr>
+<tr><td>2141</td><td>Pencil</td><td>0.50</td><td>Stationery</td></tr>
+<tr><td>2142</td><td>Colored Pencil</td><td>0.60</td><td>Stationery</td></tr>
+<tr><td>2143</td><td>Eraser</td><td>0.75</td><td>Stationery</td></tr>
+<tr><td>2144</td><td>Sharpener</td><td>1.00</td><td>Stationery</td></tr>
+<tr><td>2145</td><td>Backpack</td><td>35.00</td><td>Accessories</td></tr>
+<tr><td>2146</td><td>Tote Bag</td><td>40.00</td><td>Accessories</td></tr>
+<tr><td>2147</td><td>Running Shoes</td><td>60.00</td><td>Footwear</td></tr>
+<tr><td>2148</td><td>Casual Shoes</td><td>70.00</td><td>Footwear</td></tr>
+<tr><td>2149</td><td>Socks Pair</td><td>5.00</td><td>Footwear</td></tr>
+<tr><td>2150</td><td>Slippers</td><td>6.00</td><td>Footwear</td></tr>
+</table>
+
+<h3><code>warehouses</code> (5 rows)</h3>
+<table>
+<tr><th>warehouse_id</th><th>warehouse_name</th><th>warehouse_location</th></tr>
+<tr><td>3006</td><td>Warehouse North</td><td>Delhi, India</td></tr>
+<tr><td>3007</td><td>Warehouse South</td><td>Chennai, India</td></tr>
+<tr><td>3008</td><td>Warehouse East</td><td>Kolkata, India</td></tr>
+<tr><td>3009</td><td>Warehouse West</td><td>Mumbai, India</td></tr>
+<tr><td>3010</td><td>Warehouse Central</td><td>Bangalore, India</td></tr>
+</table>
+
+<h3><code>inventory</code> (60 rows — first 10 shown)</h3>
+<table>
+<tr><th>inv_id</th><th>product_id</th><th>Product Name</th><th>warehouse_id</th><th>Warehouse Name</th><th>stock_qty</th></tr>
+<tr><td>1</td><td>2121</td><td>Dell Laptop</td><td>3006</td><td>North</td><td>50</td></tr>
+<tr><td>2</td><td>2121</td><td>Dell Laptop</td><td>3007</td><td>South</td><td>40</td></tr>
+<tr><td>3</td><td>2122</td><td>HP Laptop</td><td>3006</td><td>North</td><td>30</td></tr>
+<tr><td>4</td><td>2122</td><td>HP Laptop</td><td>3008</td><td>East</td><td>25</td></tr>
+<tr><td>5</td><td>2123</td><td>Asus Laptop</td><td>3007</td><td>South</td><td>20</td></tr>
+<tr><td>6</td><td>2123</td><td>Asus Laptop</td><td>3009</td><td>West</td><td>15</td></tr>
+<tr><td>7</td><td>2124</td><td>Logitech Mouse</td><td>3006</td><td>North</td><td>60</td></tr>
+<tr><td>8</td><td>2124</td><td>Logitech Mouse</td><td>3010</td><td>Central</td><td>45</td></tr>
+<tr><td>9</td><td>2125</td><td>HP Mouse</td><td>3007</td><td>South</td><td>30</td></tr>
+<tr><td>10</td><td>2125</td><td>HP Mouse</td><td>3008</td><td>East</td><td>35</td></tr>
+</table>
+<p><em>Pattern: Every product is stored in exactly <strong>2 warehouses</strong>, spread across different regions.</em></p>
+
+<h3><code>orders</code> (10 rows)</h3>
+<table>
+<tr><th>order_id</th><th>customer_id</th><th>Customer Name</th><th>order_date</th><th>warehouse_id</th><th>Warehouse</th></tr>
+<tr><td>4001</td><td>1021</td><td>Aarav Sharma</td><td>2026-04-01</td><td>3006</td><td>North</td></tr>
+<tr><td>4002</td><td>1022</td><td>Ananya Singh</td><td>2026-04-02</td><td>3007</td><td>South</td></tr>
+<tr><td>4003</td><td>1023</td><td>Rohan Mehta</td><td>2026-04-03</td><td>3008</td><td>East</td></tr>
+<tr><td>4004</td><td>1024</td><td>Isha Kapoor</td><td>2026-04-04</td><td>3009</td><td>West</td></tr>
+<tr><td>4005</td><td>1025</td><td>Vivaan Patel</td><td>2026-04-05</td><td>3010</td><td>Central</td></tr>
+<tr><td>4006</td><td>1026</td><td>Diya Verma</td><td>2026-04-06</td><td>3006</td><td>North</td></tr>
+<tr><td>4007</td><td>1027</td><td>Kabir Rao</td><td>2026-04-07</td><td>3007</td><td>South</td></tr>
+<tr><td>4008</td><td>1028</td><td>Saanvi Nair</td><td>2026-04-08</td><td>3008</td><td>East</td></tr>
+<tr><td>4009</td><td>1029</td><td>Arjun Gupta</td><td>2026-04-09</td><td>3009</td><td>West</td></tr>
+<tr><td>4010</td><td>1030</td><td>Meera Joshi</td><td>2026-04-10</td><td>3010</td><td>Central</td></tr>
+</table>
+
+<h3><code>order_items</code> (10 rows)</h3>
+<table>
+<tr><th>order_item_id</th><th>order_id</th><th>product_id</th><th>Product Name</th><th>quantity</th></tr>
+<tr><td>5001</td><td>4001</td><td>2121</td><td>Dell Laptop</td><td>1</td></tr>
+<tr><td>5002</td><td>4001</td><td>2140</td><td>Marker</td><td>2</td></tr>
+<tr><td>5003</td><td>4002</td><td>2122</td><td>HP Laptop</td><td>1</td></tr>
+<tr><td>5004</td><td>4002</td><td>2130</td><td>Canon Printer</td><td>1</td></tr>
+<tr><td>5005</td><td>4003</td><td>2123</td><td>Asus Laptop</td><td>1</td></tr>
+<tr><td>5006</td><td>4003</td><td>2124</td><td>Logitech Mouse</td><td>2</td></tr>
+<tr><td>5007</td><td>4004</td><td>2125</td><td>HP Mouse</td><td>1</td></tr>
+<tr><td>5008</td><td>4004</td><td>2131</td><td>Office Chair</td><td>1</td></tr>
+<tr><td>5009</td><td>4005</td><td>2126</td><td>Corsair Keyboard</td><td>1</td></tr>
+<tr><td>5010</td><td>4005</td><td>2132</td><td>Gaming Chair</td><td>1</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 7 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>7. All Relationships &amp; Foreign Keys</h2>
+
+<h3>Visual Reference Map</h3>
+<div class="mermaid">
+graph TD
+    subgraph "Layer 0: Independent Entities"
+        C["customers\nPK: customer_id\nCK: email"]
+        P["products\nPK: product_id"]
+        W["warehouses\nPK: warehouse_id"]
+    end
+    subgraph "Layer 1: Direct Dependents"
+        I["inventory\nPK: inventory_id\nFK: product_id, warehouse_id"]
+        O["orders\nPK: order_id\nFK: customer_id, warehouse_id"]
+    end
+    subgraph "Layer 2: Deeper Dependents"
+        OI["order_items\nPK: order_item_id\nFK: order_id, product_id\nHAS TRIGGER"]
+        L["logs\nPK: log_id\nFK: inventory_id"]
+    end
+    C -->|"1:N"| O
+    W -->|"1:N"| O
+    W -->|"1:N"| I
+    P -->|"1:N"| I
+    O -->|"1:N"| OI
+    P -->|"1:N"| OI
+    I -->|"1:N"| L
+</div>
+
+<h3>Complete FK Table</h3>
+<table>
+<tr><th>#</th><th>Child Table</th><th>FK Column</th><th>→ Parent Table</th><th>→ Parent Column</th><th>ON DELETE</th><th>Meaning</th></tr>
+<tr><td>1</td><td>orders</td><td>customer_id</td><td>customers</td><td>customer_id</td><td>CASCADE</td><td>Who placed the order</td></tr>
+<tr><td>2</td><td>orders</td><td>warehouse_id</td><td>warehouses</td><td>warehouse_id</td><td>CASCADE</td><td>Which warehouse fulfills</td></tr>
+<tr><td>3</td><td>order_items</td><td>order_id</td><td>orders</td><td>order_id</td><td>CASCADE</td><td>Which order this item belongs to</td></tr>
+<tr><td>4</td><td>order_items</td><td>product_id</td><td>products</td><td>product_id</td><td>CASCADE</td><td>Which product was ordered</td></tr>
+<tr><td>5</td><td>inventory</td><td>product_id</td><td>products</td><td>product_id</td><td>CASCADE</td><td>Which product is stocked</td></tr>
+<tr><td>6</td><td>inventory</td><td>warehouse_id</td><td>warehouses</td><td>warehouse_id</td><td>CASCADE</td><td>Where it's stored</td></tr>
+<tr><td>7</td><td>logs</td><td>inventory_id</td><td>inventory</td><td>inventory_id</td><td>CASCADE</td><td>Which inventory changed</td></tr>
+</table>
+
+<h3>Referential Integrity Chain</h3>
+<pre>DELETE a customer  → CASCADE → deletes their orders  → CASCADE → deletes their order_items
+DELETE a product   → CASCADE → deletes its inventory  → CASCADE → deletes its logs
+                   → CASCADE → deletes its order_items
+DELETE a warehouse → CASCADE → deletes its inventory  → CASCADE → deletes its logs
+                   → CASCADE → deletes its orders     → CASCADE → deletes their order_items</pre>
+
+<!-- ═══════════════════ SECTION 8 ═══════════════════ -->
+<h2>8. Functional Dependencies &amp; Candidate Keys</h2>
+
+<h3>Per-Table Functional Dependencies</h3>
+<table>
+<tr><th>Table</th><th>Functional Dependencies</th></tr>
+<tr><td><code>customers</code></td><td><code>customer_id → customer_name, email, password</code><br><code>email → customer_id, customer_name, password</code></td></tr>
+<tr><td><code>products</code></td><td><code>product_id → product_name, product_price, product_category</code></td></tr>
+<tr><td><code>warehouses</code></td><td><code>warehouse_id → warehouse_name, warehouse_location</code></td></tr>
+<tr><td><code>inventory</code></td><td><code>inventory_id → product_id, warehouse_id, stock_quantity</code><br><code>(product_id, warehouse_id) → inventory_id, stock_quantity</code></td></tr>
+<tr><td><code>orders</code></td><td><code>order_id → customer_id, order_date, warehouse_id</code></td></tr>
+<tr><td><code>order_items</code></td><td><code>order_item_id → order_id, product_id, quantity</code></td></tr>
+<tr><td><code>logs</code></td><td><code>log_id → inventory_id, change_type, change_quantity, log_date</code></td></tr>
+</table>
+
+<h3>Candidate Keys Summary</h3>
+<table>
+<tr><th>Table</th><th>Primary Key</th><th>Candidate Key(s)</th></tr>
+<tr><td><code>customers</code></td><td>{customer_id}</td><td>{email}</td></tr>
+<tr><td><code>products</code></td><td>{product_id}</td><td>—</td></tr>
+<tr><td><code>warehouses</code></td><td>{warehouse_id}</td><td>—</td></tr>
+<tr><td><code>inventory</code></td><td>{inventory_id}</td><td>{product_id, warehouse_id}</td></tr>
+<tr><td><code>orders</code></td><td>{order_id}</td><td>—</td></tr>
+<tr><td><code>order_items</code></td><td>{order_item_id}</td><td>{order_id, product_id} (if unique)</td></tr>
+<tr><td><code>logs</code></td><td>{log_id}</td><td>—</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 9 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>9. Normalization Proof — 1NF → 2NF → 3NF → BCNF</h2>
+
+<h3>✅ First Normal Form (1NF)</h3>
+<table>
+<tr><th>Check</th><th>Satisfied?</th><th>Evidence</th></tr>
+<tr><td>All values atomic?</td><td>✅</td><td>No arrays, no comma-separated values, no nested structures</td></tr>
+<tr><td>Primary key exists?</td><td>✅</td><td>Every table has a single-column INT PK</td></tr>
+<tr><td>No repeating groups?</td><td>✅</td><td>Order items are in a separate table, not columns like item1, item2, item3</td></tr>
+</table>
+
+<h3>✅ Second Normal Form (2NF)</h3>
+<p><strong>Rule:</strong> Must be in 1NF + no partial dependency (no non-key attribute depends on only PART of a composite candidate key).</p>
+<table>
+<tr><th>Table</th><th>Candidate Key</th><th>Non-key Attribute</th><th>Depends On</th><th>Partial?</th></tr>
+<tr><td><code>inventory</code></td><td>{product_id, warehouse_id}</td><td>stock_quantity</td><td>Both together</td><td><strong>No</strong> → Full dependency ✅</td></tr>
+<tr><td><code>order_items</code></td><td>{order_id, product_id}</td><td>quantity</td><td>Both together</td><td><strong>No</strong> → Full dependency ✅</td></tr>
+</table>
+<p>All other tables have single-column PKs → partial dependencies are <strong>impossible by definition</strong>. ✅</p>
+
+<h3>✅ Third Normal Form (3NF)</h3>
+<p><strong>Rule:</strong> Must be in 2NF + no transitive dependency (no non-key → non-key).</p>
+<table>
+<tr><th>Table</th><th>Potential Transitive FD?</th><th>Analysis</th><th>3NF?</th></tr>
+<tr><td><code>customers</code></td><td>customer_name → email?</td><td>No! Different people can have different emails</td><td>✅</td></tr>
+<tr><td><code>products</code></td><td>product_category → product_price?</td><td>No! Same category has many prices ($25–$1200)</td><td>✅</td></tr>
+<tr><td><code>orders</code></td><td>customer_id → warehouse_id?</td><td>No! Same customer can order from different warehouses</td><td>✅</td></tr>
+<tr><td><code>inventory</code></td><td>product_id → stock_quantity?</td><td>No! Same product has different stock per warehouse</td><td>✅</td></tr>
+<tr><td>All others</td><td>—</td><td>No non-key attribute determines another non-key</td><td>✅</td></tr>
+</table>
+
+<h3>✅ Boyce-Codd Normal Form (BCNF)</h3>
+<p><strong>Rule:</strong> For every non-trivial FD X → Y, X must be a <strong>superkey</strong>.</p>
+<table>
+<tr><th>Table</th><th>FD</th><th>Is X a superkey?</th><th>BCNF?</th></tr>
+<tr><td>customers</td><td>customer_id → all</td><td>✅ PK = superkey</td><td>✅</td></tr>
+<tr><td>customers</td><td>email → all</td><td>✅ CK = superkey</td><td>✅</td></tr>
+<tr><td>products</td><td>product_id → all</td><td>✅ PK = superkey</td><td>✅</td></tr>
+<tr><td>warehouses</td><td>warehouse_id → all</td><td>✅ PK = superkey</td><td>✅</td></tr>
+<tr><td>inventory</td><td>inventory_id → all</td><td>✅ PK = superkey</td><td>✅</td></tr>
+<tr><td>inventory</td><td>(product_id, warehouse_id) → all</td><td>✅ CK = superkey</td><td>✅</td></tr>
+<tr><td>orders</td><td>order_id → all</td><td>✅ PK = superkey</td><td>✅</td></tr>
+<tr><td>order_items</td><td>order_item_id → all</td><td>✅ PK = superkey</td><td>✅</td></tr>
+<tr><td>logs</td><td>log_id → all</td><td>✅ PK = superkey</td><td>✅</td></tr>
+</table>
+
+<div class="alert alert-note"><span class="alert-label">📝 RESULT</span>
+All 7 tables satisfy <strong>1NF → 2NF → 3NF → BCNF</strong>. No anomalies. No redundancy. Clean design.</div>
+
+<!-- ═══════════════════ SECTION 10 ═══════════════════ -->
+<h2>10. Anomaly Analysis — What If We DIDN'T Normalize?</h2>
+
+<h3>Hypothetical BAD design (Denormalized)</h3>
+<pre><span class="cmt">-- ❌ TERRIBLE DESIGN — combining everything into one flat table</span>
+<span class="kw">CREATE TABLE</span> everything (
+    order_id <span class="fn">INT</span>, customer_name <span class="fn">VARCHAR(100)</span>, email <span class="fn">VARCHAR(255)</span>,
+    product_name <span class="fn">VARCHAR(100)</span>, product_price <span class="fn">DECIMAL</span>,
+    quantity <span class="fn">INT</span>, warehouse_name <span class="fn">VARCHAR(100)</span>, stock_quantity <span class="fn">INT</span>
+);</pre>
+
+<table>
+<tr><th>Anomaly</th><th>What Goes Wrong</th><th>Example</th></tr>
+<tr><td><strong>Insertion Anomaly</strong></td><td>Can't add a new warehouse unless there's an order for it</td><td>Want to add "Warehouse Hyderabad" but no orders yet → cannot insert</td></tr>
+<tr><td><strong>Deletion Anomaly</strong></td><td>Deleting the last order for a customer deletes the customer entirely</td><td>Customer Aarav has 1 order → delete it → Aarav's name, email all gone</td></tr>
+<tr><td><strong>Update Anomaly</strong></td><td>Changing a product price requires updating EVERY row that has it</td><td>"Dell Laptop" in 15 rows → miss one = inconsistency</td></tr>
+<tr><td><strong>Redundancy</strong></td><td>Customer name repeated in every order row</td><td>"Aarav Sharma" stored 50 times, wasting space</td></tr>
+</table>
+
+<h3>How This Project Avoids Anomalies</h3>
+<table>
+<tr><th>Anomaly</th><th>Solution in This DB</th></tr>
+<tr><td>Insertion</td><td>Independent tables → add warehouse without needing orders</td></tr>
+<tr><td>Deletion</td><td>CASCADE + separate tables → deleting order doesn't delete customer</td></tr>
+<tr><td>Update</td><td>Product info stored once → change price in <code>products</code>, done</td></tr>
+<tr><td>Redundancy</td><td>JOINs fetch names on-demand → no duplication</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 11 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>11. The Trigger — Line by Line</h2>
+
+<pre><span class="kw">DROP TRIGGER IF EXISTS</span> after_order_item_insert;
+<span class="cmt">-- ^ Safety: removes old version before creating new one</span>
+
+<span class="kw">DELIMITER</span> $$
+<span class="cmt">-- ^ Changes statement terminator from ; to $$
+-- ^ Required because the trigger body contains ; internally</span>
+
+<span class="kw">CREATE TRIGGER</span> after_order_item_insert
+<span class="cmt">-- ^ Name: descriptive — tells you WHEN and WHERE it fires</span>
+<span class="kw">AFTER INSERT ON</span> order_items
+<span class="cmt">-- ^ AFTER = fires after the INSERT completes (row already exists)
+-- ^ INSERT = only fires on INSERT, not UPDATE or DELETE
+-- ^ ON order_items = watches this specific table</span>
+<span class="kw">FOR EACH ROW</span>
+<span class="cmt">-- ^ Row-level trigger: fires once per row inserted</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">DECLARE</span> inv_id <span class="fn">INT</span>;
+    <span class="cmt">-- ^ Local variable to hold the inventory_id we find</span>
+
+    <span class="kw">SELECT</span> inventory_id <span class="kw">INTO</span> inv_id
+    <span class="kw">FROM</span> inventory
+    <span class="kw">WHERE</span> product_id = <span class="fn">NEW</span>.product_id
+    <span class="cmt">-- ^ NEW = pseudo-row referencing the just-inserted order_item
+    -- ^ NEW.product_id = the product_id from the inserted row</span>
+      <span class="kw">AND</span> warehouse_id = (
+          <span class="kw">SELECT</span> warehouse_id <span class="kw">FROM</span> orders <span class="kw">WHERE</span> order_id = <span class="fn">NEW</span>.order_id
+      )
+    <span class="cmt">-- ^ Subquery: find which warehouse this order is from</span>
+    <span class="kw">LIMIT</span> <span class="num">1</span>;
+
+    <span class="kw">IF</span> inv_id <span class="kw">IS NOT NULL THEN</span>
+    <span class="cmt">-- ^ Only proceed if matching inventory record found</span>
+
+        <span class="kw">UPDATE</span> inventory
+        <span class="kw">SET</span> stock_quantity = stock_quantity - <span class="fn">NEW</span>.quantity
+        <span class="kw">WHERE</span> inventory_id = inv_id;
+        <span class="cmt">-- ^ DEDUCT stock: subtract ordered quantity</span>
+
+        <span class="kw">INSERT INTO</span> logs (inventory_id, change_type, change_quantity)
+        <span class="kw">VALUES</span> (inv_id, <span class="str">'OUT'</span>, <span class="fn">NEW</span>.quantity);
+        <span class="cmt">-- ^ AUDIT LOG: record 'OUT' (stock going out)</span>
+
+    <span class="kw">END IF</span>;
+<span class="kw">END</span>$$
+
+<span class="kw">DELIMITER</span> ;
+<span class="cmt">-- ^ Reset terminator back to normal</span></pre>
+
+<h3>Trigger Execution Flowchart</h3>
+<div class="mermaid">
+flowchart TD
+    A["INSERT INTO order_items\n order_id=4001, product_id=2121, qty=1"] --> B["TRIGGER FIRES"]
+    B --> C["Lookup: Which warehouse?\nSELECT warehouse_id FROM orders\nWHERE order_id = 4001\n= warehouse_id = 3006"]
+    C --> D["Find inventory row:\nWHERE product_id=2121\nAND warehouse_id=3006\n= inventory_id = 1"]
+    D --> E{"inv_id IS NOT NULL?"}
+    E -->|Yes| F["UPDATE inventory\nSET stock_quantity = 50 - 1 = 49\nWHERE inventory_id = 1"]
+    F --> G["INSERT INTO logs\n inventory_id=1, OUT, 1"]
+    E -->|No| H["Do nothing\n product not in warehouse"]
+    style B fill:#ff6b6b,color:#fff
+    style F fill:#4ecdc4,color:#fff
+    style G fill:#45b7d1,color:#fff
+</div>
+
+<!-- ═══════════════════ SECTION 12 ═══════════════════ -->
+<h2>12. ACID Properties Analysis</h2>
+
+<table>
+<tr><th>Property</th><th>Meaning</th><th>How This Project Implements It</th></tr>
+<tr><td><strong>A — Atomicity</strong></td><td>"All or Nothing"</td><td><code>BEGIN TRANSACTION</code> → INSERT order → INSERT items → <code>COMMIT</code>. If ANY step fails: <code>ROLLBACK</code> (nothing changes)</td></tr>
+<tr><td><strong>C — Consistency</strong></td><td>"Valid State → Valid State"</td><td>FK constraints ensure valid references. App checks stock ≥ quantity before ordering. UNIQUE email prevents duplicates.</td></tr>
+<tr><td><strong>I — Isolation</strong></td><td>"Concurrent transactions don't interfere"</td><td>MySQL default: <code>REPEATABLE READ</code>. Each transaction sees a snapshot from when it started. Other uncommitted changes invisible.</td></tr>
+<tr><td><strong>D — Durability</strong></td><td>"Committed = Permanent"</td><td>InnoDB write-ahead log (WAL). Once <code>COMMIT</code> returns, data survives crashes.</td></tr>
+</table>
+
+<h3>Atomicity in Code</h3>
+<pre><span class="cmt">// orderController.js — Transaction Pattern</span>
+<span class="kw">await</span> connection.<span class="fn">beginTransaction</span>();       <span class="cmt">// ← START</span>
+<span class="kw">await</span> connection.<span class="fn">query</span>(<span class="str">'INSERT INTO orders ...'</span>);     <span class="cmt">// Step 1</span>
+<span class="kw">for</span> (<span class="kw">const</span> item <span class="kw">of</span> orderItems) {
+    <span class="kw">await</span> connection.<span class="fn">query</span>(<span class="str">'INSERT INTO order_items ...'</span>); <span class="cmt">// Step 2..N</span>
+}
+<span class="kw">await</span> connection.<span class="fn">commit</span>();                  <span class="cmt">// ← COMMIT (all succeed)</span>
+
+<span class="cmt">// If ANY step fails:</span>
+<span class="kw">await</span> connection.<span class="fn">rollback</span>();               <span class="cmt">// ← ROLLBACK (none applied)</span></pre>
+
+<!-- ═══════════════════ SECTION 13 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>13. Transaction Walkthrough — Order Placement</h2>
+
+<p><strong>Scenario:</strong> Customer Aarav (1021) orders 1 Dell Laptop + 2 Markers from Warehouse North (3006)</p>
+
+<div class="mermaid">
+sequenceDiagram
+    participant B as Browser
+    participant S as Express Server
+    participant M as MySQL
+    participant T as Trigger
+
+    B->>S: POST /orders {items: [{pid:2121,qty:1},{pid:2140,qty:2}]}
+    S->>S: JWT verify: customer_id=1021
+    S->>M: SELECT stock for products 2121, 2140
+    M-->>S: stock OK
+    rect rgb(255, 240, 240)
+        Note over S,M: TRANSACTION BEGINS
+        S->>M: INSERT INTO orders (1021, 3006, NOW())
+        M-->>S: order_id = 4011
+        S->>M: INSERT INTO order_items (4011, 2121, 1)
+        Note over T: TRIGGER: deduct stock, write log
+        S->>M: INSERT INTO order_items (4011, 2140, 2)
+        Note over T: TRIGGER: deduct stock, write log
+        S->>M: COMMIT
+    end
+    S-->>B: success, order_id=4011
+</div>
+
+<h3>Database State Changes</h3>
+<table>
+<tr><th>Table</th><th>Before</th><th>After</th><th>Change</th></tr>
+<tr><td><code>orders</code></td><td>10 rows</td><td><strong>11 rows</strong></td><td>+1 new order (4011)</td></tr>
+<tr><td><code>order_items</code></td><td>10 rows</td><td><strong>12 rows</strong></td><td>+2 new items</td></tr>
+<tr><td><code>inventory</code> (Dell Laptop, North)</td><td>stock=50</td><td><strong>stock=49</strong></td><td>-1 (trigger)</td></tr>
+<tr><td><code>inventory</code> (Marker, North)</td><td>stock=N</td><td><strong>stock=N-2</strong></td><td>-2 (trigger)</td></tr>
+<tr><td><code>logs</code></td><td>X rows</td><td><strong>X+2 rows</strong></td><td>+2 OUT entries (trigger)</td></tr>
+<tr><td><code>customers</code></td><td>unchanged</td><td>unchanged</td><td>—</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 14 ═══════════════════ -->
+<h2>14. All SQL Queries Used in the Application</h2>
+
+<h3>Auth Queries (authController.js)</h3>
+<table>
+<tr><th>#</th><th>Operation</th><th>HTTP Route</th><th>SQL</th></tr>
+<tr><td>Q1</td><td>Check email exists</td><td>POST /register</td><td><code>SELECT customer_id FROM customers WHERE email = ?</code></td></tr>
+<tr><td>Q2</td><td>Get next customer ID</td><td>POST /register</td><td><code>SELECT MAX(customer_id) as max_id FROM customers</code></td></tr>
+<tr><td>Q3</td><td>Insert customer</td><td>POST /register</td><td><code>INSERT INTO customers (customer_id, customer_name, email, password) VALUES (?,?,?,?)</code></td></tr>
+<tr><td>Q4</td><td>Login lookup</td><td>POST /login</td><td><code>SELECT customer_id, customer_name, email, password FROM customers WHERE email = ?</code></td></tr>
+</table>
+
+<h3>Product Queries (productController.js)</h3>
+<table>
+<tr><th>#</th><th>Operation</th><th>HTTP Route</th><th>SQL</th></tr>
+<tr><td>Q5</td><td>List products + stock</td><td>GET /products</td><td><code>SELECT p.*, COALESCE(SUM(i.stock_quantity),0) AS stock FROM products p LEFT JOIN inventory i ON p.product_id = i.product_id GROUP BY p.product_id</code></td></tr>
+<tr><td>Q6</td><td>Product detail + warehouses</td><td>GET /products/:id</td><td><code>SELECT p.*, i.stock_quantity, w.* FROM products p LEFT JOIN inventory i ... LEFT JOIN warehouses w ... WHERE p.product_id = ?</code></td></tr>
+</table>
+
+<h3>Order Queries (orderController.js)</h3>
+<table>
+<tr><th>#</th><th>Operation</th><th>HTTP Route</th><th>SQL</th></tr>
+<tr><td>Q7</td><td>Check stock</td><td>POST /orders</td><td><code>SELECT p.product_id, COALESCE(SUM(i.stock_quantity),0) AS stock FROM products p LEFT JOIN inventory i ... WHERE p.product_id IN (?) GROUP BY p.product_id</code></td></tr>
+<tr><td>Q8</td><td>Find warehouse</td><td>POST /orders</td><td><code>SELECT DISTINCT i.warehouse_id FROM inventory i WHERE i.product_id IN (?) LIMIT 1</code></td></tr>
+<tr><td>Q9</td><td>Create order</td><td>POST /orders</td><td><code>INSERT INTO orders (customer_id, warehouse_id, order_date) VALUES (?,?,NOW())</code></td></tr>
+<tr><td>Q10</td><td>Create order item</td><td>POST /orders</td><td><code>INSERT INTO order_items (order_id, product_id, quantity) VALUES (?,?,?)</code></td></tr>
+<tr><td>Q11</td><td>Get warehouse name</td><td>POST /orders</td><td><code>SELECT warehouse_name FROM warehouses WHERE warehouse_id = ?</code></td></tr>
+<tr><td>Q12</td><td>List user's orders</td><td>GET /orders</td><td><code>SELECT o.*, w.warehouse_name, oi.*, p.* FROM orders o JOIN warehouses w ... JOIN order_items oi ... JOIN products p ... WHERE o.customer_id = ?</code></td></tr>
+<tr><td>Q13</td><td>Get single order</td><td>GET /orders/:id</td><td>Same as Q12 + <code>AND o.order_id = ?</code></td></tr>
+</table>
+
+<h3>Inventory Queries (inventoryController.js)</h3>
+<table>
+<tr><th>#</th><th>Operation</th><th>HTTP Route</th><th>SQL</th></tr>
+<tr><td>Q14</td><td>List inventory</td><td>GET /inventory</td><td><code>SELECT i.*, p.product_name, w.warehouse_name FROM inventory i JOIN products p ... JOIN warehouses w ...</code></td></tr>
+<tr><td>Q15</td><td>Check existing</td><td>POST /inventory</td><td><code>SELECT inventory_id, stock_quantity FROM inventory WHERE product_id=? AND warehouse_id=?</code></td></tr>
+<tr><td>Q16</td><td>Update stock</td><td>POST /inventory</td><td><code>UPDATE inventory SET stock_quantity = stock_quantity + ? WHERE inventory_id = ?</code></td></tr>
+<tr><td>Q17</td><td>Insert new inventory</td><td>POST /inventory</td><td><code>INSERT INTO inventory (product_id, warehouse_id, stock_quantity) VALUES (?,?,?)</code></td></tr>
+<tr><td>Q18</td><td>Log stock change</td><td>POST/PUT /inventory</td><td><code>INSERT INTO logs (inventory_id, change_type, change_quantity, log_date) VALUES (?,?,?,NOW())</code></td></tr>
+<tr><td>Q19</td><td>Get by ID</td><td>PUT /inventory/:id</td><td><code>SELECT ... FROM inventory WHERE inventory_id = ?</code></td></tr>
+<tr><td>Q20</td><td>Adjust stock</td><td>PUT /inventory/:id</td><td><code>UPDATE inventory SET stock_quantity = ? WHERE inventory_id = ?</code></td></tr>
+</table>
+
+<h3>Log Queries (logController.js)</h3>
+<table>
+<tr><th>#</th><th>Operation</th><th>HTTP Route</th><th>SQL</th></tr>
+<tr><td>Q21</td><td>Paginated logs</td><td>GET /logs</td><td><code>SELECT l.log_id, p.product_name, w.warehouse_name, l.change_type, l.change_quantity, l.log_date FROM logs l JOIN inventory i ... JOIN products p ... JOIN warehouses w ... LIMIT ? OFFSET ?</code></td></tr>
+<tr><td>Q22</td><td>Count total</td><td>GET /logs</td><td><code>SELECT COUNT(*) AS total FROM logs</code></td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 15 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>15. Relational Algebra Equivalents</h2>
+
+<table>
+<tr><th>Query</th><th>SQL</th><th>Relational Algebra</th></tr>
+<tr><td>Q1: Check email</td><td><code>SELECT customer_id FROM customers WHERE email = ?</code></td><td>π<sub>customer_id</sub> (σ<sub>email='...'</sub> (customers))</td></tr>
+<tr><td>Q4: Login lookup</td><td><code>SELECT ... FROM customers WHERE email = ?</code></td><td>π<sub>customer_id, customer_name, email, password</sub> (σ<sub>email=?</sub> (customers))</td></tr>
+<tr><td>Q5: Products + stock</td><td><code>SELECT p.*, SUM(stock) FROM products p LEFT JOIN inventory i ... GROUP BY p.product_id</code></td><td>γ<sub>product_id; SUM(stock_quantity)→stock</sub> (products ⟕ inventory)</td></tr>
+<tr><td>Q12: User's orders</td><td><code>...orders JOIN warehouses JOIN order_items JOIN products WHERE customer_id = ?</code></td><td>π<sub>...</sub> (σ<sub>customer_id=1021</sub> (orders ⋈ warehouses ⋈ order_items ⋈ products))</td></tr>
+<tr><td>Q14: List inventory</td><td><code>inventory JOIN products JOIN warehouses</code></td><td>inventory ⋈ products ⋈ warehouses</td></tr>
+<tr><td>Q21: Logs with names</td><td><code>logs JOIN inventory JOIN products JOIN warehouses ORDER BY log_date</code></td><td>τ<sub>log_date DESC</sub> (logs ⋈ inventory ⋈ products ⋈ warehouses)</td></tr>
+</table>
+
+<p><strong>Symbols:</strong> π = project, σ = select, ⋈ = natural join, ⟕ = left outer join, γ = grouping/aggregation, τ = sort</p>
+
+<!-- ═══════════════════ SECTION 16 ═══════════════════ -->
+<h2>16. JOIN Map — Every Possible Join Path</h2>
+
+<h3>Direct Joins (1 hop)</h3>
+<table>
+<tr><th>Join</th><th>Condition</th><th>Type</th><th>Used In</th></tr>
+<tr><td>orders ⋈ customers</td><td>orders.customer_id = customers.customer_id</td><td>INNER</td><td>—</td></tr>
+<tr><td>orders ⋈ warehouses</td><td>orders.warehouse_id = warehouses.warehouse_id</td><td>INNER</td><td>Q12, Q13</td></tr>
+<tr><td>orders ⋈ order_items</td><td>order_items.order_id = orders.order_id</td><td>INNER</td><td>Q12, Q13</td></tr>
+<tr><td>order_items ⋈ products</td><td>order_items.product_id = products.product_id</td><td>INNER</td><td>Q12, Q13</td></tr>
+<tr><td>products ⋈ inventory</td><td>inventory.product_id = products.product_id</td><td>LEFT</td><td>Q5, Q6, Q7</td></tr>
+<tr><td>warehouses ⋈ inventory</td><td>inventory.warehouse_id = warehouses.warehouse_id</td><td>INNER</td><td>Q6, Q14</td></tr>
+<tr><td>inventory ⋈ logs</td><td>logs.inventory_id = inventory.inventory_id</td><td>INNER</td><td>Q21</td></tr>
+</table>
+
+<h3>Multi-Hop Join Paths</h3>
+<table>
+<tr><th>Path</th><th>Hops</th><th>Use Case</th></tr>
+<tr><td>customers → orders → order_items → products</td><td>3</td><td>"What did customer X buy?"</td></tr>
+<tr><td>products → inventory → warehouses</td><td>2</td><td>"Which warehouses have product Y?"</td></tr>
+<tr><td>products → inventory → logs</td><td>2</td><td>"Audit trail for product Y"</td></tr>
+<tr><td>customers → orders → warehouses</td><td>2</td><td>"Which warehouses did customer X order from?"</td></tr>
+<tr><td>logs → inventory → products</td><td>2</td><td>"Which product had this log?"</td></tr>
+<tr><td>logs → inventory → warehouses</td><td>2</td><td>"Which warehouse had this log?"</td></tr>
+<tr><td>customers → orders → order_items → products → inventory → logs</td><td>5</td><td>"Full trace: customer to audit"</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 17 ═══════════════════ -->
+<h2>17. Indexing Strategy &amp; Optimization</h2>
+
+<h3>Automatic Indexes (Created by MySQL)</h3>
+<table>
+<tr><th>Index</th><th>Table</th><th>Column(s)</th><th>Created By</th></tr>
+<tr><td>PRIMARY</td><td>all tables</td><td>PK column</td><td>PRIMARY KEY constraint</td></tr>
+<tr><td>UNIQUE</td><td>customers</td><td>email</td><td>UNIQUE constraint</td></tr>
+<tr><td>FK index</td><td>orders</td><td>customer_id</td><td>Foreign key</td></tr>
+<tr><td>FK index</td><td>orders</td><td>warehouse_id</td><td>Foreign key</td></tr>
+<tr><td>FK index</td><td>order_items</td><td>order_id</td><td>Foreign key</td></tr>
+<tr><td>FK index</td><td>order_items</td><td>product_id</td><td>Foreign key</td></tr>
+<tr><td>FK index</td><td>inventory</td><td>product_id</td><td>Foreign key</td></tr>
+<tr><td>FK index</td><td>inventory</td><td>warehouse_id</td><td>Foreign key</td></tr>
+<tr><td>FK index</td><td>logs</td><td>inventory_id</td><td>Foreign key</td></tr>
+<tr><td>UNIQUE</td><td>inventory</td><td>(product_id, warehouse_id)</td><td>Composite unique</td></tr>
+</table>
+
+<h3>Recommended Additional Indexes</h3>
+<pre><span class="kw">CREATE INDEX</span> idx_product_name <span class="kw">ON</span> products(product_name);
+<span class="kw">CREATE INDEX</span> idx_product_category <span class="kw">ON</span> products(product_category);
+<span class="kw">CREATE INDEX</span> idx_order_date <span class="kw">ON</span> orders(order_date <span class="kw">DESC</span>);
+<span class="kw">CREATE INDEX</span> idx_log_date <span class="kw">ON</span> logs(log_date <span class="kw">DESC</span>);
+<span class="kw">CREATE INDEX</span> idx_orders_customer <span class="kw">ON</span> orders(customer_id, order_date <span class="kw">DESC</span>);
+<span class="kw">CREATE INDEX</span> idx_inventory_cover <span class="kw">ON</span> inventory(product_id, warehouse_id, stock_quantity);</pre>
+
+<!-- ═══════════════════ SECTION 18 ═══════════════════ -->
+<h2>18. Concurrency &amp; Isolation Levels</h2>
+
+<table>
+<tr><th>Problem</th><th>Protected?</th><th>How</th></tr>
+<tr><td><strong>Dirty Read</strong></td><td>✅ Yes</td><td>Uncommitted data from other transactions is invisible</td></tr>
+<tr><td><strong>Non-Repeatable Read</strong></td><td>✅ Yes</td><td>Same SELECT returns same results within a transaction</td></tr>
+<tr><td><strong>Phantom Read</strong></td><td>✅ Yes (InnoDB)</td><td>InnoDB uses next-key locking to prevent phantoms</td></tr>
+<tr><td><strong>Lost Update</strong></td><td>⚠️ Partial</td><td>Requires <code>SELECT ... FOR UPDATE</code> for full protection</td></tr>
+</table>
+
+<h3>Potential Race Condition</h3>
+<table>
+<tr><th>Time</th><th>Transaction A (Customer 1)</th><th>Transaction B (Customer 2)</th></tr>
+<tr><td>T1</td><td>Read stock: Dell Laptop = 1</td><td></td></tr>
+<tr><td>T2</td><td></td><td>Read stock: Dell Laptop = 1</td></tr>
+<tr><td>T3</td><td>Stock ≥ qty? 1 ≥ 1 → YES</td><td></td></tr>
+<tr><td>T4</td><td></td><td>Stock ≥ qty? 1 ≥ 1 → YES</td></tr>
+<tr><td>T5</td><td>INSERT → trigger → stock = 0</td><td></td></tr>
+<tr><td>T6</td><td></td><td>INSERT → trigger → stock = -1 ❌</td></tr>
+</table>
+
+<div class="alert alert-warning"><span class="alert-label">⚠️ FIX</span>
+Add <code>CHECK (stock_quantity >= 0)</code> constraint or use <code>SELECT ... FOR UPDATE</code> (pessimistic locking) to prevent this.</div>
+
+<!-- ═══════════════════ SECTION 19 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>19. Security Analysis</h2>
+
+<table>
+<tr><th>Layer</th><th>Measure</th><th>Implementation</th></tr>
+<tr><td><strong>Password Storage</strong></td><td>bcrypt with salt rounds=10</td><td><code>bcrypt.hash(password, 10)</code></td></tr>
+<tr><td><strong>Authentication</strong></td><td>JWT tokens (8h expiry)</td><td><code>jwt.sign({customer_id, email}, secret, {expiresIn:'8h'})</code></td></tr>
+<tr><td><strong>SQL Injection Prevention</strong></td><td>Parameterized queries</td><td><code>pool.query('SELECT ... WHERE email = ?', [email])</code></td></tr>
+<tr><td><strong>CORS</strong></td><td>Localhost-only origin</td><td>Regex: <code>/^http:\/\/localhost:\d+$/</code></td></tr>
+<tr><td><strong>Authorization</strong></td><td>Auth middleware on protected routes</td><td>Orders, inventory, logs require JWT</td></tr>
+</table>
+
+<h3>Auth Flow Diagram</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+    participant DB as MySQL
+    C->>S: POST /register {name, email, password}
+    S->>S: bcrypt.hash(password, 10)
+    S->>DB: INSERT INTO customers
+    S->>S: jwt.sign({customer_id, email})
+    S-->>C: {token: "eyJhbG..."}
+    Note over C,S: Authenticated Requests
+    C->>S: GET /orders | Authorization: Bearer token
+    S->>S: jwt.verify(token)
+    S->>DB: SELECT ... WHERE customer_id = decoded.id
+    S-->>C: [orders]
+</div>
+
+<h3>SQL Injection — Why Parameterized Queries Matter</h3>
+<pre><span class="cmt">// ❌ VULNERABLE (string concatenation):</span>
+<span class="kw">const</span> sql = <span class="str">`SELECT * FROM customers WHERE email = '${email}'`</span>;
+<span class="cmt">// If email = "' OR 1=1 --", returns ALL customers!</span>
+
+<span class="cmt">// ✅ SAFE (parameterized — what this project does):</span>
+<span class="kw">const</span> [rows] = <span class="kw">await</span> pool.<span class="fn">query</span>(<span class="str">'SELECT * FROM customers WHERE email = ?'</span>, [email]);
+<span class="cmt">// The ? is safely escaped by the mysql2 driver</span></pre>
+
+<!-- ═══════════════════ SECTION 20 ═══════════════════ -->
+<h2>20. Data Flow Diagrams</h2>
+
+<h3>Level 0 DFD (Context Diagram)</h3>
+<div class="mermaid">
+graph LR
+    C["Customer"] -->|"Registration, Login, Browse, Order"| S["Smart Supply Chain\nManagement System"]
+    A["Admin"] -->|"Manage Inventory, View Logs"| S
+    S -->|"JWT Token, Product Data, Order Confirmation"| C
+    S -->|"Inventory Status, Audit Logs"| A
+    S <-->|"Read/Write"| DB[("MySQL\nsupply_chain")]
+</div>
+
+<h3>Level 1 DFD</h3>
+<div class="mermaid">
+graph TB
+    C["Customer"] -->|credentials| P1["1.0 Auth Process"]
+    P1 -->|JWT token| C
+    P1 <-->|"R/W customers"| DB[("MySQL")]
+    C -->|search/filter| P2["2.0 Product Catalog"]
+    P2 -->|product list + stock| C
+    P2 <-->|"R products, inventory"| DB
+    C -->|cart items| P3["3.0 Order Processing"]
+    P3 -->|confirmation| C
+    P3 <-->|"R/W orders, order_items"| DB
+    A["Admin"] -->|stock changes| P4["4.0 Inventory Mgmt"]
+    P4 -->|current stock| A
+    P4 <-->|"R/W inventory, logs"| DB
+    A -->|page request| P5["5.0 Log Viewer"]
+    P5 -->|audit entries| A
+    P5 <-->|"R logs"| DB
+</div>
+
+<h3>API Route Map</h3>
+<table>
+<tr><th>Auth Required?</th><th>Method</th><th>Route</th><th>Controller</th><th>Description</th></tr>
+<tr><td>❌ No</td><td>POST</td><td>/register</td><td>authController</td><td>Create account</td></tr>
+<tr><td>❌ No</td><td>POST</td><td>/login</td><td>authController</td><td>Login, get JWT</td></tr>
+<tr><td>❌ No</td><td>GET</td><td>/products</td><td>productController</td><td>List products</td></tr>
+<tr><td>❌ No</td><td>GET</td><td>/products/:id</td><td>productController</td><td>Product detail</td></tr>
+<tr><td>✅ Yes</td><td>POST</td><td>/orders</td><td>orderController</td><td>Place order</td></tr>
+<tr><td>✅ Yes</td><td>GET</td><td>/orders</td><td>orderController</td><td>My orders</td></tr>
+<tr><td>✅ Yes</td><td>GET</td><td>/orders/:id</td><td>orderController</td><td>Order detail</td></tr>
+<tr><td>✅ Yes</td><td>GET</td><td>/inventory</td><td>inventoryController</td><td>List inventory</td></tr>
+<tr><td>✅ Yes</td><td>POST</td><td>/inventory</td><td>inventoryController</td><td>Add stock</td></tr>
+<tr><td>✅ Yes</td><td>PUT</td><td>/inventory/:id</td><td>inventoryController</td><td>Adjust stock</td></tr>
+<tr><td>✅ Yes</td><td>GET</td><td>/logs</td><td>logController</td><td>Audit logs</td></tr>
+</table>
+
+<!-- ═══════════════════ SECTION 21 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>21. Practice SQL Queries (Exam-Ready)</h2>
+
+<h3>🟢 Easy Level</h3>
+
+<p><strong>Q1. List all products in the 'Electronics' category:</strong></p>
+<pre><span class="kw">SELECT</span> product_id, product_name, product_price
+<span class="kw">FROM</span> products
+<span class="kw">WHERE</span> product_category = <span class="str">'Electronics'</span>;</pre>
+
+<p><strong>Q2. Find the most expensive product:</strong></p>
+<pre><span class="kw">SELECT</span> product_name, product_price
+<span class="kw">FROM</span> products
+<span class="kw">ORDER BY</span> product_price <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">1</span>;</pre>
+
+<p><strong>Q3. Count products per category:</strong></p>
+<pre><span class="kw">SELECT</span> product_category, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_products
+<span class="kw">FROM</span> products
+<span class="kw">GROUP BY</span> product_category;</pre>
+
+<p><strong>Q4. Find all customers whose name starts with 'A':</strong></p>
+<pre><span class="kw">SELECT</span> customer_id, customer_name, email
+<span class="kw">FROM</span> customers
+<span class="kw">WHERE</span> customer_name <span class="kw">LIKE</span> <span class="str">'A%'</span>;</pre>
+
+<h3>🟡 Medium Level</h3>
+
+<p><strong>Q5. Total stock per product (across all warehouses):</strong></p>
+<pre><span class="kw">SELECT</span> p.product_name, <span class="fn">COALESCE</span>(<span class="fn">SUM</span>(i.stock_quantity), <span class="num">0</span>) <span class="kw">AS</span> total_stock
+<span class="kw">FROM</span> products p
+<span class="kw">LEFT JOIN</span> inventory i <span class="kw">ON</span> p.product_id = i.product_id
+<span class="kw">GROUP BY</span> p.product_id, p.product_name
+<span class="kw">ORDER BY</span> total_stock <span class="kw">DESC</span>;</pre>
+
+<p><strong>Q6. Which warehouse has the most total stock?</strong></p>
+<pre><span class="kw">SELECT</span> w.warehouse_name, <span class="fn">SUM</span>(i.stock_quantity) <span class="kw">AS</span> total_stock
+<span class="kw">FROM</span> warehouses w
+<span class="kw">JOIN</span> inventory i <span class="kw">ON</span> w.warehouse_id = i.warehouse_id
+<span class="kw">GROUP BY</span> w.warehouse_id
+<span class="kw">ORDER BY</span> total_stock <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">1</span>;</pre>
+
+<p><strong>Q7. Find customers who placed more than 1 order:</strong></p>
+<pre><span class="kw">SELECT</span> c.customer_name, <span class="fn">COUNT</span>(o.order_id) <span class="kw">AS</span> order_count
+<span class="kw">FROM</span> customers c
+<span class="kw">JOIN</span> orders o <span class="kw">ON</span> c.customer_id = o.customer_id
+<span class="kw">GROUP BY</span> c.customer_id
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(o.order_id) > <span class="num">1</span>;</pre>
+
+<p><strong>Q8. Products that are out of stock in ALL warehouses:</strong></p>
+<pre><span class="kw">SELECT</span> p.product_name
+<span class="kw">FROM</span> products p
+<span class="kw">LEFT JOIN</span> inventory i <span class="kw">ON</span> p.product_id = i.product_id
+<span class="kw">GROUP BY</span> p.product_id
+<span class="kw">HAVING</span> <span class="fn">COALESCE</span>(<span class="fn">SUM</span>(i.stock_quantity), <span class="num">0</span>) = <span class="num">0</span>;</pre>
+
+<h3>🔴 Hard Level</h3>
+
+<p><strong>Q9. For each order, calculate the total price:</strong></p>
+<pre><span class="kw">SELECT</span> o.order_id, o.order_date, c.customer_name,
+       <span class="fn">SUM</span>(oi.quantity * p.product_price) <span class="kw">AS</span> total_price
+<span class="kw">FROM</span> orders o
+<span class="kw">JOIN</span> customers c <span class="kw">ON</span> o.customer_id = c.customer_id
+<span class="kw">JOIN</span> order_items oi <span class="kw">ON</span> o.order_id = oi.order_id
+<span class="kw">JOIN</span> products p <span class="kw">ON</span> oi.product_id = p.product_id
+<span class="kw">GROUP BY</span> o.order_id
+<span class="kw">ORDER BY</span> total_price <span class="kw">DESC</span>;</pre>
+
+<p><strong>Q10. Monthly revenue report:</strong></p>
+<pre><span class="kw">SELECT</span> <span class="fn">DATE_FORMAT</span>(o.order_date, <span class="str">'%Y-%m'</span>) <span class="kw">AS</span> month,
+       <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> o.order_id) <span class="kw">AS</span> total_orders,
+       <span class="fn">SUM</span>(oi.quantity * p.product_price) <span class="kw">AS</span> revenue
+<span class="kw">FROM</span> orders o
+<span class="kw">JOIN</span> order_items oi <span class="kw">ON</span> o.order_id = oi.order_id
+<span class="kw">JOIN</span> products p <span class="kw">ON</span> oi.product_id = p.product_id
+<span class="kw">GROUP BY</span> <span class="fn">DATE_FORMAT</span>(o.order_date, <span class="str">'%Y-%m'</span>)
+<span class="kw">ORDER BY</span> month;</pre>
+
+<p><strong>Q11. Products ordered but never restocked (only 'OUT', no 'IN'):</strong></p>
+<pre><span class="kw">SELECT DISTINCT</span> p.product_name
+<span class="kw">FROM</span> products p
+<span class="kw">JOIN</span> inventory i <span class="kw">ON</span> p.product_id = i.product_id
+<span class="kw">JOIN</span> logs l <span class="kw">ON</span> l.inventory_id = i.inventory_id
+<span class="kw">WHERE</span> l.change_type = <span class="str">'OUT'</span>
+  <span class="kw">AND</span> i.inventory_id <span class="kw">NOT IN</span> (
+      <span class="kw">SELECT</span> inventory_id <span class="kw">FROM</span> logs <span class="kw">WHERE</span> change_type = <span class="str">'IN'</span>
+  );</pre>
+
+<p><strong>Q12. Detect potential stockout — products with stock ≤ 10 in ANY warehouse:</strong></p>
+<pre><span class="kw">SELECT</span> p.product_name, w.warehouse_name, i.stock_quantity
+<span class="kw">FROM</span> inventory i
+<span class="kw">JOIN</span> products p <span class="kw">ON</span> i.product_id = p.product_id
+<span class="kw">JOIN</span> warehouses w <span class="kw">ON</span> i.warehouse_id = w.warehouse_id
+<span class="kw">WHERE</span> i.stock_quantity <= <span class="num">10</span>
+<span class="kw">ORDER BY</span> i.stock_quantity <span class="kw">ASC</span>;</pre>
+
+<p><strong>Q13. Correlated subquery — Customers who ordered the most expensive product:</strong></p>
+<pre><span class="kw">SELECT DISTINCT</span> c.customer_name
+<span class="kw">FROM</span> customers c
+<span class="kw">WHERE</span> c.customer_id <span class="kw">IN</span> (
+    <span class="kw">SELECT</span> o.customer_id
+    <span class="kw">FROM</span> orders o
+    <span class="kw">JOIN</span> order_items oi <span class="kw">ON</span> o.order_id = oi.order_id
+    <span class="kw">WHERE</span> oi.product_id = (
+        <span class="kw">SELECT</span> product_id <span class="kw">FROM</span> products <span class="kw">ORDER BY</span> product_price <span class="kw">DESC LIMIT</span> <span class="num">1</span>
+    )
+);</pre>
+
+<p><strong>Q14. Rank warehouses by fulfillment count (Window Function):</strong></p>
+<pre><span class="kw">SELECT</span> w.warehouse_name,
+       <span class="fn">COUNT</span>(o.order_id) <span class="kw">AS</span> orders_fulfilled,
+       <span class="fn">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> <span class="fn">COUNT</span>(o.order_id) <span class="kw">DESC</span>) <span class="kw">AS</span> rnk
+<span class="kw">FROM</span> warehouses w
+<span class="kw">LEFT JOIN</span> orders o <span class="kw">ON</span> w.warehouse_id = o.warehouse_id
+<span class="kw">GROUP BY</span> w.warehouse_id;</pre>
+
+<p><strong>Q15. Create a view for "Product Dashboard":</strong></p>
+<pre><span class="kw">CREATE VIEW</span> product_dashboard <span class="kw">AS</span>
+<span class="kw">SELECT</span> p.product_id, p.product_name, p.product_category, p.product_price,
+       <span class="fn">COALESCE</span>(<span class="fn">SUM</span>(i.stock_quantity), <span class="num">0</span>) <span class="kw">AS</span> total_stock,
+       <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> i.warehouse_id) <span class="kw">AS</span> stocked_in_warehouses
+<span class="kw">FROM</span> products p
+<span class="kw">LEFT JOIN</span> inventory i <span class="kw">ON</span> p.product_id = i.product_id
+<span class="kw">GROUP BY</span> p.product_id;</pre>
+
+<!-- ═══════════════════ SECTION 22 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>22. Viva / Interview Q&amp;A (25 Questions)</h2>
+
+<h3>Fundamental (Q1–Q5)</h3>
+
+<p><strong>Q1. What DBMS does this project use and why?</strong></p>
+<blockquote>MySQL 8.0+, a <strong>relational DBMS</strong>. Chosen because: (a) the data has clear entity-relationship structure, (b) ACID transactions are needed for order processing, (c) SQL JOINs efficiently connect products-inventory-warehouses, (d) triggers automate stock management.</blockquote>
+
+<p><strong>Q2. How many tables are there and what are they?</strong></p>
+<blockquote>7 tables: 3 <strong>independent entity</strong> tables (customers, products, warehouses), 2 <strong>junction</strong> tables (inventory, order_items), 1 <strong>transaction</strong> table (orders), and 1 <strong>audit</strong> table (logs).</blockquote>
+
+<p><strong>Q3. What is the difference between a Primary Key and a Candidate Key?</strong></p>
+<blockquote>A <strong>candidate key</strong> is any minimal set of attributes that uniquely identifies a row. A <strong>primary key</strong> is the candidate key chosen as the main identifier. Example: customers has two candidate keys — {customer_id} and {email} — but customer_id was chosen as the PK.</blockquote>
+
+<p><strong>Q4. Why is <code>inventory</code> considered a junction table?</strong></p>
+<blockquote>It resolves the <strong>Many-to-Many</strong> relationship between products and warehouses. One product can be in many warehouses, and one warehouse stores many products. inventory sits in between with FKs to both, plus an additional attribute stock_quantity.</blockquote>
+
+<p><strong>Q5. Why doesn't the <code>products</code> table have a <code>stock</code> column?</strong></p>
+<blockquote>Because stock varies <strong>per warehouse</strong>. Storing a single stock value in products would violate 3NF (transitive dependency). Instead, stock is computed dynamically via <code>SUM(inventory.stock_quantity)</code> using JOINs.</blockquote>
+
+<h3>Intermediate (Q6–Q15)</h3>
+
+<p><strong>Q6. Explain the trigger in this database.</strong></p>
+<blockquote><code>after_order_item_insert</code> fires after every INSERT into order_items. It (1) finds the inventory_id for that product in the order's warehouse, (2) deducts stock_quantity, and (3) inserts an audit log with change_type = 'OUT'.</blockquote>
+
+<p><strong>Q7. What is referential integrity and how is it maintained here?</strong></p>
+<blockquote>Referential integrity ensures that every FK value in a child table matches a PK in the parent table. It's maintained through FOREIGN KEY constraints with ON DELETE CASCADE.</blockquote>
+
+<p><strong>Q8. What are the ACID properties?</strong></p>
+<blockquote><strong>A</strong>tomicity: Order placement uses BEGIN/COMMIT/ROLLBACK. <strong>C</strong>onsistency: FK constraints + triggers. <strong>I</strong>solation: REPEATABLE READ prevents dirty reads. <strong>D</strong>urability: InnoDB's write-ahead log.</blockquote>
+
+<p><strong>Q9. What normal form is this database in? Prove it.</strong></p>
+<blockquote><strong>BCNF</strong>. Proof: (1) All values atomic → 1NF ✅. (2) No partial dependencies → 2NF ✅. (3) No transitive dependencies → 3NF ✅. (4) Every determinant is a superkey → BCNF ✅.</blockquote>
+
+<p><strong>Q10. What is a connection pool and why is it used?</strong></p>
+<blockquote>A connection pool pre-creates a set of database connections (here, 10) and reuses them. Without pooling, each HTTP request creates and destroys a TCP connection (slow). With pooling, connections are borrowed and returned, reducing latency.</blockquote>
+
+<p><strong>Q11. How does authentication work in this system?</strong></p>
+<blockquote>Registration: password is bcrypt-hashed → stored in customers. Login: email lookup → bcrypt.compare → if match, generate JWT with {customer_id, email}, expires in 8 hours. Protected routes verify JWT in Authorization header.</blockquote>
+
+<p><strong>Q12. What is SQL Injection and how is it prevented here?</strong></p>
+<blockquote>SQL injection is when malicious SQL is inserted via user input. Prevented using <strong>parameterized queries</strong>: <code>pool.query('WHERE email = ?', [email])</code>. The ? placeholder is safely escaped by the mysql2 driver.</blockquote>
+
+<p><strong>Q13. Difference between INNER JOIN and LEFT JOIN?</strong></p>
+<blockquote><strong>INNER JOIN</strong>: returns only matching rows from both tables. <strong>LEFT JOIN</strong>: returns all rows from the left table, NULLs for non-matching right. LEFT JOIN is used for <code>products LEFT JOIN inventory</code> because a product might have no stock but should still appear.</blockquote>
+
+<p><strong>Q14. What's the purpose of <code>INSERT IGNORE</code> in the seed file?</strong></p>
+<blockquote>INSERT IGNORE attempts the INSERT but silently skips rows that cause duplicate key errors. Makes the seed script <strong>idempotent</strong> — safe to run multiple times.</blockquote>
+
+<p><strong>Q15. What is a surrogate key vs a natural key?</strong></p>
+<blockquote>A <strong>natural key</strong> uses real-world data (e.g., email). A <strong>surrogate key</strong> is an artificial identifier (e.g., customer_id). This project uses surrogate PKs for stability, compactness, and fast JOINs.</blockquote>
+
+<h3>Advanced (Q16–Q25)</h3>
+
+<p><strong>Q16. Could stock go negative if two customers order simultaneously?</strong></p>
+<blockquote>Yes, theoretically (TOCTOU race condition). Fix: use <code>SELECT ... FOR UPDATE</code> or add <code>CHECK (stock_quantity >= 0)</code>.</blockquote>
+
+<p><strong>Q17. Why is <code>customer_id</code> not AUTO_INCREMENT?</strong></p>
+<blockquote>Design inconsistency. It uses <code>MAX(customer_id) + 1</code> in app code, which has a race condition. <code>order_id</code> correctly uses AUTO_INCREMENT. customer_id should also use it.</blockquote>
+
+<p><strong>Q18. Could you replace the trigger with application code?</strong></p>
+<blockquote>Yes. <strong>Trigger</strong> = guaranteed consistency even if bypassing the app, but harder to debug. <strong>App code</strong> = more visible/testable, but direct MySQL inserts won't deduct stock.</blockquote>
+
+<p><strong>Q19. What if we add a <code>total_price</code> column to <code>orders</code>?</strong></p>
+<blockquote>It's a <strong>derived attribute</strong> (calculable from order_items × products). Storing it creates redundancy and risks update anomalies. The current design correctly computes it on-the-fly.</blockquote>
+
+<p><strong>Q20. How would you add "order status" (Pending, Shipped, Delivered)?</strong></p>
+<blockquote><code>ALTER TABLE orders ADD COLUMN status ENUM('Pending','Shipped','Delivered') DEFAULT 'Pending';</code> — still in BCNF because order_id → status is a direct dependency.</blockquote>
+
+<p><strong>Q21. How would you scale this for millions of orders?</strong></p>
+<blockquote>(a) Range-partition orders by date. (b) Add composite indexes. (c) Read replicas. (d) Archive old orders. (e) Redis cache for product catalog.</blockquote>
+
+<p><strong>Q22. What is denormalization and when would you use it here?</strong></p>
+<blockquote>Denormalization adds redundancy for read performance. Example: add total_stock to products (updated by trigger). Faster reads but must keep both sources in sync.</blockquote>
+
+<p><strong>Q23. View vs Materialized View?</strong></p>
+<blockquote>A <strong>View</strong> re-executes the query each time (virtual). A <strong>Materialized View</strong> stores the result (faster reads, needs refresh). MySQL doesn't support MVs natively; simulate with summary table + trigger.</blockquote>
+
+<p><strong>Q24. How does the <code>DELIMITER</code> command work?</strong></p>
+<blockquote>MySQL uses <code>;</code> to end statements. The trigger body contains <code>;</code> inside it. <code>DELIMITER $$</code> tells MySQL to use <code>$$</code> as the terminator instead, so the <code>;</code> inside the body is part of the trigger, not statement boundaries.</blockquote>
+
+<p><strong>Q25. If you redesigned this database, what would you change?</strong></p>
+<blockquote>(a) AUTO_INCREMENT for customer_id. (b) Add status to orders. (c) Add created_at/updated_at to all tables. (d) CHECK (stock_quantity >= 0). (e) ON DELETE RESTRICT instead of CASCADE. (f) Separate categories table. (g) Denormalized order_total column with trigger.</blockquote>
+
+<!-- ═══════════════════ SECTION 23 ═══════════════════ -->
+<div class="page-break"></div>
+<h2>23. Glossary of DBMS Terms</h2>
+
+<table>
+<tr><th>Term</th><th>Definition</th><th>Example in This Project</th></tr>
+<tr><td><strong>DBMS</strong></td><td>Database Management System</td><td>MySQL 8.0</td></tr>
+<tr><td><strong>Schema</strong></td><td>Structure/blueprint of a database</td><td><code>supply_chain</code> database structure</td></tr>
+<tr><td><strong>Entity</strong></td><td>A real-world object as a table</td><td>Customer, Product, Warehouse</td></tr>
+<tr><td><strong>Attribute</strong></td><td>A property of an entity (column)</td><td>customer_name, product_price</td></tr>
+<tr><td><strong>Primary Key (PK)</strong></td><td>Column(s) uniquely identifying each row</td><td>customer_id, order_id</td></tr>
+<tr><td><strong>Foreign Key (FK)</strong></td><td>Column referencing a PK in another table</td><td>orders.customer_id → customers.customer_id</td></tr>
+<tr><td><strong>Candidate Key</strong></td><td>Minimal set of columns that can be a PK</td><td>{customer_id} and {email}</td></tr>
+<tr><td><strong>Super Key</strong></td><td>Any set uniquely identifying a row</td><td>{customer_id, email}</td></tr>
+<tr><td><strong>Surrogate Key</strong></td><td>Artificial PK with no real-world meaning</td><td>inventory_id (auto-increment)</td></tr>
+<tr><td><strong>Natural Key</strong></td><td>PK using real-world data</td><td>email in customers</td></tr>
+<tr><td><strong>Junction Table</strong></td><td>Resolves a M:N relationship</td><td>inventory, order_items</td></tr>
+<tr><td><strong>Functional Dependency</strong></td><td>X → Y means X uniquely determines Y</td><td>product_id → product_name</td></tr>
+<tr><td><strong>Normalization</strong></td><td>Organizing data to reduce redundancy</td><td>Splitting into 7 tables</td></tr>
+<tr><td><strong>1NF</strong></td><td>All values atomic, PK exists</td><td>✅ All tables</td></tr>
+<tr><td><strong>2NF</strong></td><td>1NF + no partial dependencies</td><td>✅ All tables</td></tr>
+<tr><td><strong>3NF</strong></td><td>2NF + no transitive dependencies</td><td>✅ All tables</td></tr>
+<tr><td><strong>BCNF</strong></td><td>Every determinant is a superkey</td><td>✅ All tables</td></tr>
+<tr><td><strong>Trigger</strong></td><td>Auto-executing SQL on table event</td><td>after_order_item_insert</td></tr>
+<tr><td><strong>Transaction</strong></td><td>Group of SQL executed atomically</td><td>Order placement (BEGIN → COMMIT)</td></tr>
+<tr><td><strong>ACID</strong></td><td>Atomicity, Consistency, Isolation, Durability</td><td>Transaction guarantees</td></tr>
+<tr><td><strong>Connection Pool</strong></td><td>Pre-created reusable DB connections</td><td>mysql.createPool({connectionLimit: 10})</td></tr>
+<tr><td><strong>JWT</strong></td><td>JSON Web Token — stateless auth</td><td>Bearer eyJhbG...</td></tr>
+<tr><td><strong>bcrypt</strong></td><td>Password hashing with salt</td><td>$2a$10$xK3v...</td></tr>
+<tr><td><strong>Parameterized Query</strong></td><td>SQL with ? — prevents injection</td><td>WHERE email = ?</td></tr>
+<tr><td><strong>CASCADE</strong></td><td>Auto-delete/update child rows</td><td>ON DELETE CASCADE</td></tr>
+<tr><td><strong>COALESCE</strong></td><td>First non-NULL value</td><td>COALESCE(SUM(stock), 0)</td></tr>
+<tr><td><strong>LEFT JOIN</strong></td><td>All left rows, NULL-fill right</td><td>products LEFT JOIN inventory</td></tr>
+<tr><td><strong>INNER JOIN</strong></td><td>Only matching rows</td><td>orders JOIN warehouses</td></tr>
+<tr><td><strong>Aggregate Function</strong></td><td>SUM, COUNT, AVG, MAX, MIN</td><td>SUM(stock_quantity)</td></tr>
+<tr><td><strong>GROUP BY</strong></td><td>Groups rows for aggregation</td><td>GROUP BY product_id</td></tr>
+<tr><td><strong>HAVING</strong></td><td>Filter on aggregated results</td><td>HAVING COUNT(*) > 1</td></tr>
+<tr><td><strong>Idempotent</strong></td><td>Same result when run multiple times</td><td>INSERT IGNORE</td></tr>
+<tr><td><strong>View</strong></td><td>Virtual table from a query</td><td>CREATE VIEW product_dashboard</td></tr>
+<tr><td><strong>Index</strong></td><td>Data structure for fast lookups</td><td>Auto on PKs, FKs, UNIQUE</td></tr>
+<tr><td><strong>Isolation Level</strong></td><td>Degree of transaction visibility</td><td>REPEATABLE READ (MySQL default)</td></tr>
+</table>
+
+<hr>
+
+<p style="text-align:center; font-size:10pt; color:#666; margin-top:40px;">
+<strong>Total Coverage:</strong> 7 tables × every column × every query × every relationship × every concept<br>
+<strong>Normalization:</strong> Proven to BCNF with formal functional dependency analysis<br>
+<strong>Practice:</strong> 15 SQL queries (Easy → Hard) + 25 viva questions with model answers<br>
+<strong>This document is exam-ready, viva-ready, and interview-ready.</strong> 🎯
+</p>
+
+<!-- Mermaid init -->
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    securityLevel: 'loose',
+    flowchart: { useMaxWidth: true, curve: 'basis' },
+    sequence: { useMaxWidth: true },
+    er: { useMaxWidth: true }
+  });
+</script>
+
+</body>
+</html>
